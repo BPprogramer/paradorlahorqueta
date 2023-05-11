@@ -1,6 +1,6 @@
 <?php 
 
-    // require 'models/Conexion.php';
+     require 'models/Conexion.php';
 
 	if(!isset($_ENV)==0){
 		
@@ -18,7 +18,7 @@
 	require_once "controllers/PlantillaController.php";
 	require_once "controllers/VentasController.php";
 	require_once "controllers/CategoriasController.php";
-	require_once "controllers/CrearVentaController.php";
+	//require_once "controllers/CrearVentaController.php";
 	require_once "controllers/ProductosController.php";
 	require_once "controllers/ReporteVentasController.php";
 	require_once "controllers/UsuarioController.php";

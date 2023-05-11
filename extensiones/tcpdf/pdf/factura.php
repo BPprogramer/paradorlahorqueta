@@ -144,7 +144,7 @@ class imprimirFactura{
                 </tr>
                 <tr>
                     <td style="border-right:1px solid #666;background-color:white; width:340px"> </td>
-                    <td style="border:1px solid #666; background-color:white; width:100px">Impuesto: </td>
+                    <td style="border:1px solid #666; background-color:white; width:100px">Credito: </td>
                     <td style="border:1px solid #666;border-left::1px solid #666; background-color:white; width:100px"><strong>$ $this->deuda</strong></td>
                 </tr>
                 <tr>

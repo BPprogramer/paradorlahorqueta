@@ -320,10 +320,11 @@
                 if ($fecha_inicial==false || $fecha_final==false) {
                     return;
                 }
+              
                 $ventas =  Ventas::consultarRangoVentas($fecha_inicial, $fecha_final);
                 foreach($ventas as $venta){
                   //  $cliente = Clientes::consultarClientes('clientes', 'id', $venta['id_cliente']);
-                    $vendedor = Usuarios::consultarUsuario('usuarios', 'id', $venta['id_vendedor']);
+                   // $vendedor = Usuarios::consultarUsuario('usuarios', 'id', $venta['id_vendedor']);
                     $productos = json_decode($venta['productos'], true);
 
                   //  $cliente_nombre = $cliente['nombre']??'anonimo';
@@ -357,7 +358,7 @@
                         <td style='font-weight:bold; border:2px solid #000;'>PRODUCTOS</td>
                         <td style='font-weight:bold; border:2px solid #000;'>PRECIO UNITARIO</td>
                         <td style='font-weight:bold; border:2px solid #000;'>IMPUESTO</td>
-                        <td style='font-weight:bold; border:2px solid #000;'>NETO</td>		
+                        <td style='font-weight:bold; border:2px solid #000;'>DEUDA</td>		
                         <td style='font-weight:bold; border:2px solid #000;'>TOTAL</td>		
                         <td style='font-weight:bold; border:2px solid #000;'>METODO DE PAGO</td	
                         <td style='font-weight:bold; border:2px solid #000;'>FECHA</td>		
@@ -384,7 +385,7 @@
                             echo "</td>";
                             echo utf8_decode("<td style='border:2px solid #000;'>");
                             foreach($productos as $key=>$value){
-                                echo utf8_decode($value['precio_producto']."<br>");
+                                echo utf8_decode($value['descripcion']."<br>");
                             }
                             echo "</td>";
                             echo utf8_decode("<td style='border:2px solid #000;'>");
