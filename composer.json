@@ -1,0 +1,13 @@
+{
+    "name": "asus/horqueta",
+    "description": "La Horqueta por Bryan Piamba",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Bryan Alexander Piamba Benavides"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
