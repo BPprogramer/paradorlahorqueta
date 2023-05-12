@@ -13,7 +13,7 @@
         public static function consultarVenta(){
             $respuesta= Ventas::consultarVenta('administrar_ventas', 'codigo', $_POST['codigo_venta']);
             $vendedor  = Usuarios::consultarUsuario('usuarios', 'id', $respuesta['id_vendedor']);
-            $respuesta['vendedor'] = $vendedor['nombre'];
+            $respuesta['vendedor'] = $vendedor['nombre']??'anonimo';
             return $respuesta;
         }
         public static function pagoDeudas(){

@@ -43,7 +43,7 @@ $(document).on('click', '.btnEliminarCategoria', function(){
         confirmButtonColor:'#3085d6',
         cancelarButtonColor:'#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'si, Eliminar Usuario'
+        confirmButtonText: 'si, Eliminar Categoría'
 
     }).then((result)=>{
         if(result.value){

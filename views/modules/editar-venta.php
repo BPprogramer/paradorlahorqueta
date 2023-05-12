@@ -51,7 +51,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span><!-- vendedor -->
-                                            <div class="form-control"  style="background-color:#f9f9f9;"><?php echo $vendedor['nombre']?></div>
+                                            <div class="form-control"  style="background-color:#f9f9f9;"><?php echo $vendedor['nombre']??'anonimo'?></div>
                                             <input type="hidden" id="id_vendedor" name="id_vendedor" value="<?php echo $venta['id_vendedor']?>">
                                         </div>
                                     </div>

@@ -9,6 +9,7 @@ $('.tablaProductos').DataTable({
     "proccesing":true
 });
 
+
 $('#idCategoria').change(function(){
     const idCategoria = $(this).val();
  

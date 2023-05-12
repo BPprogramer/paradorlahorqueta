@@ -23,6 +23,10 @@
                         $i++;
                         $imagen = "<img class='img-thumbmail' style='width:40px' src='".$producto['imagen']."'>";
                         $categoria = CategoriasController::consultarCategorias('id', $producto['id_categoria']);
+                      
+                    
+                        $nombre_categoria = $categoria['nombre']??'anonimo';
+                       
                         $botones = "<div>";
                         $botones .= "<button class='btn btn-warning btnEditarProducto' idProducto='".$producto['id']."' data-toggle='modal' data-target='#editarProducto'><i class='fa fa-pencil' ></i></button>";
                         $botones .= "<button class='btn btn-danger btnEliminarProducto' idProducto='".$producto['id']."'><i class='fa fa-times'   data-toggle='modalEliminar' data-target='#modalEliminarProducto'</i></button>";
@@ -40,7 +44,7 @@
                                 "'.$imagen.'",
                                 "'.$producto['codigo'].'",
                                 "'.$producto['descripcion'].'",
-                                "'.$categoria['nombre'].'",
+                                "'.$nombre_categoria.'",
                                 "'.$stock.'",
                                 "$'.number_format($producto['precio_compra'], 2, ',', '.').'",
                                 "$'.number_format($producto['precio_venta'], 2, ',', '.').'",

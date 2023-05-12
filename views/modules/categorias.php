@@ -82,7 +82,8 @@
                 </div>
                 <?php
               
-                    CategoriasController::crearCategoria();
+                   CategoriasController::crearCategoria();
+                   
                 ?>
             </form>
         </div>
