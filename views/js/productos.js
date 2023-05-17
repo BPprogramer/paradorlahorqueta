@@ -57,7 +57,9 @@ $('#idCategoria').change(function(){
 
 $('.form_agregar_producto').submit(function(e){
    e.preventDefault();
-    
+   if($('.alerta').length>0){
+    $('.alerta').remove();
+}
 
     const idCategoria = $('#idCategoria').val();
 

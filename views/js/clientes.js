@@ -61,6 +61,7 @@ $('.formulario_guardar_cliente').submit(function(e){
         processData:false,
         dataType:"json",
         success:function(req){
+  
             console.log(req)
             if(req=='no-validate'){
             
