@@ -1,6 +1,6 @@
 
 //*************************subir la foto del usuario*******************
-console.log('hola mundo')
+
 if($('.usuarios').length>0){
     let nombre = '';
     let usuario = '';
