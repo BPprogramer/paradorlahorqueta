@@ -5,7 +5,7 @@ if(localStorage.getItem('rango')!=null){
 $(".tablaClientes").dataTable().fnDestroy(); //por si me da error de reinicializar
 
 $('.tablaClientes').DataTable({
-    ajax: 'ajax/AjaxTablaClientes.php',
+    ajax: 'ajax/ajaxTablaClientes.php',
     "deferRender":true,
     "retrieve":true,
     "proccesing":true
