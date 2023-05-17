@@ -31,6 +31,22 @@
 					</a>
 				</li>
 			<?php }?>
+			<?php if($_SESSION['perfil']=='administrador' || $_SESSION['perfil']=='vendedor'){?>
+				
+				
+				<li>
+					<a href="creditos">
+			
+						<i class="fa fa-money"></i>
+
+
+						<span>Creditos</span>
+					</a>
+				</li>
+			
+		
+			<?php }?>
+		
 		
 			<?php if($_SESSION['perfil']=='administrador' || $_SESSION['perfil']=='vendedor'){?>
 				<li>
@@ -79,22 +95,7 @@
 
 				
 			</li>
-			<?php if($_SESSION['perfil']=='administrador' || $_SESSION['perfil']=='vendedor'){?>
-				
-				
-				<li>
-					<a href="creditos">
 			
-						<i class="fa fa-money"></i>
-
-
-						<span>Creditos</span>
-					</a>
-				</li>
-			
-		
-			<?php }?>
-		
 
 		</ul>
 	</section>
