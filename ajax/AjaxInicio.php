@@ -9,6 +9,7 @@
     class AjaxInicio{
             public function consultarDatosInicio(){
                 $respuesta = InicioController::inicio();
+              
                 echo json_encode($respuesta);
             }
     }
