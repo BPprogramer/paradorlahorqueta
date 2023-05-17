@@ -90,11 +90,16 @@ $('.form_agregar_producto').submit(function(e){
         processData: false,
         dataType: "json",
         success:function(req){
-   
+            console.log(req)
+            if(req==['imagen no compatible']){
+                $('.form_group_imagen').after('<div class="alert alert-danger text-center alerta">Imagen no Compatible</div>');
+                return;
+            }
             if(req=='datos_invalidos'){
                 if(!$('.alerta').length>0){
                     $('.form_group_imagen').after('<div class="alert alert-danger text-center alerta">todos los campos son obligatorios y deben ser validos</div>')
                 }
+                return;
             }else if(req=='error'){
                 $('.alerta').remove()
                 Swal.fire({
@@ -148,7 +153,9 @@ $(".imagen").change(function(){
 
     
     //validar que laimagen sea jpg o png
+    console.log(imagen['type'])
     if(imagen['type'] != "image/jpeg" && imagen['type']!= "image/png"){
+        console.log('mirndo imagen')
         $('.imagen').val("");
         Swal.fire({
             icon:'error',
@@ -291,7 +298,11 @@ $('.form_editar_producto').submit(function(e){
          processData: false,
          dataType: "json",
          success:function(req){
-            console.log(req);
+            console.log(req)
+            if(req==['imagen no compatible']){
+                $('.form_group_imagen_editar').after('<div class="alert alert-danger text-center alerta">Imagen no Compatible</div>');
+                return;
+            }
          
             if(req=='id_invalido'){
                 window.location='productos'
@@ -348,8 +359,10 @@ $("#editar_imagen").change(function(){
     }
     
     //validar que laimagen sea jpg o png
+    console.log(imagen['type'])
+    console.log(imagen['size'])
     if(imagen['type'] != "image/jpeg" && imagen['type']!= "image/png"){
-       
+       console.log('mirando imagen')
         $('.form_group_imagen_editar').after('<div class="alert alert-danger text-center alerta">solo formato jpg y png</div>')
     }else if(imagen["size"]>2000000){
        

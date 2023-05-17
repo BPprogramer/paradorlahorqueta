@@ -29,7 +29,11 @@
            if(preg_match($parttern_2, $descripcion) && preg_match($parttern_1, $codigo) && preg_match($parttern_1, (int)$stock) && preg_match($parttern_1, (float)$precio_compra) && preg_match($parttern_1, (float)$precio_venta)){
                 
                 if(isset($_FILES['imagen'])){
-
+                    $info_img = getimagesize($_FILES['imagen']["tmp_name"]);
+                  
+                    if($info_img['mime']!='image/jpeg' && $info_img['mime']!='image/png'){
+                        return 'imagen no compatible';
+                    }
               
                     if(($_FILES['imagen']['tmp_name']) !== ""){
                          list($width, $height) = getimagesize($_FILES['imagen']['tmp_name']);
@@ -107,9 +111,17 @@
                 $imagen = $imagen['imagen'];
             
                  if(!empty($_FILES['editar_imagen'])){
+                    $info_img = getimagesize($_FILES['editar_imagen']["tmp_name"]);
+                    if($info_img['mime']!='image/jpeg' && $info_img['mime']!='image/png'){
+                        return 'imagen no compatible';
+                    }
                    
+                         
                     if($imagen != 'views/img/productos/default/anonymous.png'){
-                       unlink('../'.$imagen);
+                        if(file_exists('../'.$imagen)){
+                            unlink('../'.$imagen);
+                        }
+                     
                     }
                     
            
@@ -145,12 +157,13 @@
                             //guardamos la imagen 
                            
                             $imagen = $directorio.$nombre_imagen.".png";
-                             $img_origen = imagecreatefrompng($_FILES["editar_imagen"]["tmp_name"]); ///////
+                    
+                            $img_origen = imagecreatefrompng($_FILES["editar_imagen"]["tmp_name"]); ///////
                             $img_destino = imagecreatetruecolor($newWidth, $newHeight);             
                             imagecopyresized($img_destino,$img_origen, 0, 0, 0,0, $newWidth, $newHeight,$width, $height);
                             imagejpeg($img_destino, $imagen);
                             $imagen = 'views/img/productos/fotos/'.$nombre_imagen.".png";
-                        
+                           
                         }
                     }
                 } 
