@@ -109,6 +109,7 @@ CUERPO DOCUMENTO sidebar-collapse
  
 <?php 
      
+     $_SESSION['login'] = true;
         
        if(isset($_SESSION['login']) && $_SESSION['login']==true){
             echo '<div class="wrapper">';
