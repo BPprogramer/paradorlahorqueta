@@ -3,7 +3,7 @@
     require_once '../controllers/ReporteVentasController.php';
     require_once '../models/Ventas.php';
 
-    class AjaxReporteventas{
+    class AjaxReporteVentas{
         public function consultarDatosventas(){
            
             $respuesta = ReporteVentasController::consultarDatosventas($_POST);
@@ -11,7 +11,7 @@
         }
     }
 
-    $datos = new AjaxReporteventas();
+    $datos = new AjaxReporteVentas();
     if(isset($_POST['fecha_final'])){
         
         $datos->consultarDatosventas();

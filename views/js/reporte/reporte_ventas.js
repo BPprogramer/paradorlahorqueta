@@ -26,7 +26,7 @@ if($('.grafico_ventas_reporte').length>0){
         datos.append('fecha_final',fecha_final);
 
         $.ajax({
-            url : "ajax/AjaxReporteventas.php",
+            url : "ajax/AjaxReporteVentas.php",
             method: 'POST',
             data: datos,
             cache:false,
