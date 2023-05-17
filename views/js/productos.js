@@ -257,14 +257,14 @@ $(document).on('click', '.btnEditarProducto',function(){
 //envio del formulario
 
 $('.form_editar_producto').submit(function(e){
-    
+    if($('.alerta').length>0){
+        $('.alerta').remove()
+     }
 
     e.preventDefault();
      const datosProducto = [ $('#editar_descripcion').val(),$('#editar_stock').val(),$('#editar_precio_compra').val(),$('#editar_precio_venta').val()]
      if(datosProducto.some(dato=>dato=='')){
-         if($('.alerta').length>0){
-            $('.alerta').remove()
-         }
+         
          $('.form_group_imagen_editar').after('<div class="alert alert-danger text-center alerta">Todos los Campos Son Obligatorios excepto la imagen</div>')
          return;
      }
