@@ -703,7 +703,7 @@ function enviarDatos(){
         datos.append('abono',abono)
         
     }
-    if(window.location.href.indexOf('http://https://zonasoftware.online/horqueta/crear-venta')===0){ //crear venta
+    if(window.location.href.indexOf('https://zonasoftware.online/horqueta/crear-venta')===0){ //crear venta
       
         const create = 'create';
         datos.append('create',create)
