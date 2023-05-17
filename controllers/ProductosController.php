@@ -196,7 +196,10 @@
             $imagen = Productos::consultarProductos('productos', 'id', $id);
             $imagen = $imagen['imagen'];
             if($imagen != 'views/img/productos/default/anonymous.png'){
-                unlink('../'.$imagen);
+                if(file_exists('../'.$imagen)){
+                    unlink('../'.$imagen);
+                }
+               
              }
 
 
