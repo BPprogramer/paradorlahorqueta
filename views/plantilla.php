@@ -110,6 +110,11 @@ CUERPO DOCUMENTO sidebar-collapse
 <?php 
      
      $_SESSION['login'] = true;
+     $_SESSION['id'] = 1;
+     $_SESSION['nombre'] = "Bryan Alexander Piamba benavides";
+     $_SESSION['usuario'] = "bryan123";
+     $_SESSION['foto'] = "views/img/usuarios/fotos/c0a6caf5d84a3c7c5b3633932f8d9969.jpg";
+     $_SESSION['perfil'] = "administrador";
         
        if(isset($_SESSION['login']) && $_SESSION['login']==true){
             echo '<div class="wrapper">';
