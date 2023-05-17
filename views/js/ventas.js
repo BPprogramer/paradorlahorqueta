@@ -705,88 +705,88 @@ function enviarDatos(){
     }
     if(window.location.href.indexOf('https://zonasoftware.online/horqueta/crear-venta')===0){ //crear venta
         console.log('creando venta')
-        // const create = 'create';
-        // datos.append('create',create)
-        // console.log('haciendo ajax')
-        // $.ajax({
-        //     url : "ajax/AjaxVentas.php",
-        //     method: 'POST',
-        //     data: datos,
-        //     contentType:false,
-        //     processData:false,
-        //     cache:false,
-        //     dataType:"json",
-        //     success:function(req){
-        //         console.log(req);
-        //         if(req=='success'){
-        //             console.log('entro');
+        const create = 'create';
+        datos.append('create',create)
+        console.log('haciendo ajax')
+        $.ajax({
+            url : "ajax/AjaxVentas.php",
+            method: 'POST',
+            data: datos,
+            contentType:false,
+            processData:false,
+            cache:false,
+            dataType:"json",
+            success:function(req){
+                console.log(req);
+                if(req=='success'){
+                    console.log('entro');
                     
-        //             Swal.fire({
-        //                 title: 'Compra guardada exitosamente',
-        //                 icon:'success',
-        //                 showDenyButton: false,
-        //                 showCancelButton: false,
-        //                 confirmButtonText: 'aceptar',
+                    Swal.fire({
+                        title: 'Compra guardada exitosamente',
+                        icon:'success',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'aceptar',
                         
-        //             }).then((result) => {
+                    }).then((result) => {
                       
-        //                 if (result.isConfirmed) {
-        //                     location.reload()
+                        if (result.isConfirmed) {
+                            location.reload()
                            
-        //                 } 
+                        } 
     
-        //             })
-        //         }
-        //     },
-        //     error:function(error){
-        //         console.log('error')
-        //         console.log(error.responseText)
-        //     }
+                    })
+                }
+            },
+            error:function(error){
+                console.log('error')
+                console.log(error.responseText)
+            }
     
-        // })
+        })
     }else{ //editar venta
         console.log('editando venta')
-        // const id = $('#id_venta_editar').val()
-        // const update = 'update';
-        // datos.append('id',id)
-        // datos.append('update',update)
+        const id = $('#id_venta_editar').val()
+        const update = 'update';
+        datos.append('id',id)
+        datos.append('update',update)
    
-        // $.ajax({
-        //     url : "ajax/AjaxVentas.php",
-        //     method: 'POST',
-        //     data: datos,
-        //     contentType:false,
-        //     processData:false,
-        //     cache:false,
-        //     dataType:"json",
-        //     success:function(req){
-        //         console.log(req)
-        //         if(req=='success'){
+        $.ajax({
+            url : "ajax/AjaxVentas.php",
+            method: 'POST',
+            data: datos,
+            contentType:false,
+            processData:false,
+            cache:false,
+            dataType:"json",
+            success:function(req){
+                console.log(req)
+                if(req=='success'){
                   
                     
-        //             Swal.fire({
-        //                 title: 'Compra actualizada exitosamente',
-        //                 icon:'success',
-        //                 showDenyButton: false,
-        //                 showCancelButton: false,
-        //                 confirmButtonText: 'aceptar',
+                    Swal.fire({
+                        title: 'Compra actualizada exitosamente',
+                        icon:'success',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'aceptar',
                         
-        //             }).then((result) => {
-        //                 /* Read more about isConfirmed, isDenied below */
-        //                 if (result.isConfirmed) {
-        //                     window.location.href = 'administrar-ventas';
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            window.location.href = 'administrar-ventas';
                            
-        //                 } 
+                        } 
     
-        //             })
-        //         }
-        //     },
-        //     error:function(error){
+                    })
+                }
+            },
+            error:function(error){
           
-        //         console.log(error.responseText)
-        //     }
+                console.log(error.responseText)
+            }
     
-        // })
+        })
     }
    
 
