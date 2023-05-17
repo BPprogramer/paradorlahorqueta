@@ -34,7 +34,7 @@ if($('.grafico_ventas_reporte').length>0){
             processData: false,
             dataType: "json",
             success:function(req){
-              
+              console.log(req)
                 mostrarCajasSuperiores(req);
             },
             error:function(error){
