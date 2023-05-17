@@ -34,7 +34,7 @@ if($('.grafico_ventas_reporte').length>0){
             processData: false,
             dataType: "json",
             success:function(req){
-              console.log(req)
+          
                 mostrarCajasSuperiores(req);
             },
             error:function(error){
@@ -45,7 +45,7 @@ if($('.grafico_ventas_reporte').length>0){
     function mostrarCajasSuperiores(datos){
         //console.log(ventas)
 
-      
+        
         const total_ventas = datos['total_ventas'].toLocaleString('en-US', {style: 'currency', currency: 'USD'});
         const total_costos = datos['total_costos'].toLocaleString('en-US', {style: 'currency', currency: 'USD'});
         const ganancia = datos['ganancia'].toLocaleString('en-US', {style: 'currency', currency: 'USD'});
