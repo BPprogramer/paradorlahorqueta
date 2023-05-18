@@ -703,7 +703,7 @@ function enviarDatos(){
         datos.append('abono',abono)
         
     }
-    if(window.location.href.indexOf('https://zonasoftware.online/horqueta/crear-venta')===0){ //crear venta
+    if(window.location.href.indexOf('crear-venta')!==-1){ //zonasoftware.online
         console.log('creando venta')
         const create = 'create';
         datos.append('create',create)
@@ -745,7 +745,7 @@ function enviarDatos(){
     
         })
     }else{ //editar venta
-        console.log('editando venta')
+    
         const id = $('#id_venta_editar').val()
         const update = 'update';
         datos.append('id',id)
@@ -760,7 +760,7 @@ function enviarDatos(){
             cache:false,
             dataType:"json",
             success:function(req){
-                console.log(req)
+                // console.log(req)
                 if(req=='success'){
                   
                     

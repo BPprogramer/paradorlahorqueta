@@ -45,7 +45,7 @@ class imprimirFactura{
         $bloque_1 = <<<EOF
         <table>
             <tr>
-                <td style="width:150px"><img src="images/logo-negro-bloque.png"></td>
+                <td style="width:150px"><img src="images/horqueta.jpg"></td>
                 <td style="background-color:white; width:140px">
                     <div style="font-size:8.5px; text-align:right; line-height:15px;">
                    
@@ -139,7 +139,7 @@ class imprimirFactura{
             <table style="font-size:10px; padding:5px 10px">
                 <tr>
                     <td style="border-right:1px solid #666;background-color:white; width:340px"> </td>
-                    <td style="border:1px solid #666; background-color:white; width:100px">Neto: </td>
+                    <td style="border:1px solid #666; background-color:white; width:100px">Total Compra: </td>
                     <td style="border:1px solid #666;border-left::1px solid #666; background-color:white; width:100px"><strong>$ $this->total</strong></td>
                 </tr>
                 <tr>
@@ -149,7 +149,7 @@ class imprimirFactura{
                 </tr>
                 <tr>
                     <td style="border-right:1px solid #666;background-color:white; width:340px"> </td>
-                    <td style="border:1px solid #666; background-color:white; width:100px">Total: </td>
+                    <td style="border:1px solid #666; background-color:white; width:100px">Total Pagar: </td>
                     <td style="border:1px solid #666;border-left::1px solid #666; background-color:white; width:100px"><strong>$ $this->total_pagar</strong></td>
                 </tr>
                

@@ -140,7 +140,7 @@
             //formateamos la tabla de productos y la de clientes a como estaba antes
             $venta = Ventas::consultarVenta('administrar_ventas', 'codigo', $_POST['codigo']);
         
-
+           
             $productos_anteriores = json_decode($venta['productos'],true);
             $cantidad_anterior = 0;
             $producto_objeto = new Productos();
@@ -357,9 +357,9 @@
                         <td style='font-weight:bold; border:2px solid #000;'>CANTIDAD</td>
                         <td style='font-weight:bold; border:2px solid #000;'>PRODUCTOS</td>
                         <td style='font-weight:bold; border:2px solid #000;'>PRECIO UNITARIO</td>
-                        <td style='font-weight:bold; border:2px solid #000;'>IMPUESTO</td>
+                        <td style='font-weight:bold; border:2px solid #000;'>TOTAL</td>
                         <td style='font-weight:bold; border:2px solid #000;'>DEUDA</td>		
-                        <td style='font-weight:bold; border:2px solid #000;'>TOTAL</td>		
+                        <td style='font-weight:bold; border:2px solid #000;'>TOTAL - CREDITO</td>		
                         <td style='font-weight:bold; border:2px solid #000;'>METODO DE PAGO</td	
                         <td style='font-weight:bold; border:2px solid #000;'>FECHA</td>		
                     </tr>"
