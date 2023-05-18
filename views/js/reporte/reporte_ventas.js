@@ -46,12 +46,12 @@ if($('.grafico_ventas_reporte').length>0){
         //console.log(ventas)
 
         
-        const total_ventas = datos['total_ventas'].toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-        const total_costos = datos['total_costos'].toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-        const ganancia = datos['ganancia'].toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-        const deuda = datos['deuda'].toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-        const ganancia_sin_deuda = datos['ganancia_sin_deuda'].toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-        const ventas_sin_deuda = datos['ventas_sin_deuda'].toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+        const total_ventas = parseFloat(datos['total_ventas']).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+        const total_costos = parseFloat(datos['total_costos']).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+        const ganancia = parseFloat(datos['ganancia']).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+        const deuda = parseFloat(datos['deuda']).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+        const ganancia_sin_deuda = parseFloat(datos['ganancia_sin_deuda']).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+        const ventas_sin_deuda = parseFloat(datos['ventas_sin_deuda']).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
     
     
       
