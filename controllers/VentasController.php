@@ -391,12 +391,12 @@
                             echo "</td>";
                             echo utf8_decode("<td style='border:2px solid #000;'>");
                             foreach($productos as $key=>$value){
-                                echo utf8_decode($value['precio_producto']."<br>");
+                                echo utf8_decode(number_format(floatval($value['precio_producto']),2)."<br>");
                             }
                             echo "</td>";
                             echo utf8_decode("<td style='border:2px solid #000;'>");
                             foreach($productos as $key=>$value){
-                                echo utf8_decode($value['precio_compra']."<br>");
+                                echo utf8_decode(number_format(floatval($value['precio_compra']),2)."<br>");
                             }
 
                             echo "</td>";
