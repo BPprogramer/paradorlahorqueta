@@ -17,7 +17,7 @@ let productos;
 
 let total;
 
-let metodo_pago;
+let metodo_pago='efectivo';
 
 let abono=0;
 let deuda=0;
