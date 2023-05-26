@@ -102,11 +102,11 @@
                                     <hr>
                                 
                                     <div class="row">
-                                        <div class="col-xs-12 col-md-6" style="padding-right:15px">
+                                        <div class="col-xs-12 col-md-4" style="padding-right:15px">
                                             <div class="" ><!-- metod de pago -->
                                                 <select name="metodo_pago" id="metodo_pago" class="form-control">
-                                                    <option value="" disabled selected>Seleccione Metodo de pago</option>
-                                                    <option value="efectivo" >Efectivo</option>
+                                                    <option value="" disabled>Seleccione Metodo de pago</option>
+                                                    <option value="efectivo" selected>Efectivo</option>
                                                     <option value="Transferencia Bancaria" >Transferencia Bancaria</option>
                                                     <option value="nequi" >Nequi</option>
                                                     <option value="credito" >Fiado</option>
@@ -117,7 +117,20 @@
                                         
                                         <div class="col-xs-12 col-md-8">
                                             <div class="contenedor_metodo_pago row"><!-- auiinsertamos desde jquery egu nel metodo seleccionado -->
-                                            
+                                                
+                                                <div class="col-xs-6 contenedor_valor_efectivo" style="">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                                                        <input type="text"  val="" class="form-control valor_efectivo" placeholder="00000">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 contenedor_cambio_efectivo" style="padding-left:0px ">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                                                        <input type="text" val="" class="form-control cambio_efectivo" placeholder="0000" readonly>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                         <input type="hidden" name="lista_metodo_pago" id="lista_metodo_pago"> <!-- aqui almacenamos el metodo de pago -->
