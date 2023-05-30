@@ -3405,7 +3405,7 @@ table.text-center th {
   height:100vh;
 
 
-  background-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%), url(../../img/plantilla/fondo.jpg);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%), url(../../img/plantilla/back.png);
 
   
   background-size:cover;

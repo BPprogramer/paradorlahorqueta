@@ -54,7 +54,7 @@
             require_once '../models/Ventas.php';
             require_once '../models/Credito.php';
 
-
+            
             $productos = json_decode($_POST['productos'],true); 
    
             date_default_timezone_set('America/Bogota');
@@ -118,7 +118,7 @@
            $venta = new Ventas();
            $tabla = 'administrar_ventas';
            $respuesta = $venta->registrarVenta($_POST, $tabla);
-       
+        
            return $respuesta;
            
         //   

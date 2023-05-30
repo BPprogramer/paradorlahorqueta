@@ -47,6 +47,7 @@
                         
                         foreach($usuarios as $usuario){
                             $numero = $numero +1;
+                            if($usuario['id']!=1){
                     ?>
                             <tr>
                                 <td><?php echo $numero ?></td>
@@ -66,7 +67,7 @@
                                     </div>
                                 </td>
                             </tr>
-                    <?php } ?>
+                    <?php }} ?>
                       
                     </tbody>
                 </table>

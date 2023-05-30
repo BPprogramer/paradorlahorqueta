@@ -44,6 +44,8 @@
                                         </div>
                                     </div>
 
+                               
+
                                     <!-- cliente -->
                              <!--        <div class="row">
                                         <div class="col-xs-12 col-sm-8 col-md-12">
@@ -100,34 +102,38 @@
                                         </div>
                                     </div>
                                     <hr>
+                                   
+                                    <!-- metodos de pago-->
+                                    
                                 
                                     <div class="row">
-                                        <div class="col-xs-12 col-md-4" style="padding-right:15px">
+                                        <div class="col-xs-12 col-md-4" style="padding-right:20px">
                                             <div class="" ><!-- metod de pago -->
-                                                <select name="metodo_pago" id="metodo_pago" class="form-control">
+                                                <select name="metodo_pago" id="metodo_pago" class="form-control" style="font-size:15px">
                                                     <option value="" disabled>Seleccione Metodo de pago</option>
-                                                    <option value="efectivo" selected>Efectivo</option>
-                                                    <option value="Transferencia Bancaria" >Transferencia Bancaria</option>
-                                                    <option value="nequi" >Nequi</option>
-                                                    <option value="credito" >Fiado</option>
+                                                    <option value="efectivo" selected>De Contado</option>
+                                                    <option value="credito" >Credito</option>
+                                                   <!--  <option value="Transferencia Bancaria" >Transferencia Bancaria</option>
+                                                    <option value="nequi" >Nequi</option> -->
+                                                    
   
                                                 </select>
                                             </div>
                                         </div>
                                         
-                                        <div class="col-xs-12 col-md-8">
+                                        <div class="col-xs-12" style="margin-top:10px">
                                             <div class="contenedor_metodo_pago row"><!-- auiinsertamos desde jquery egu nel metodo seleccionado -->
                                                 
                                                 <div class="col-xs-6 contenedor_valor_efectivo" style="">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                                                        <input type="text"  val="" class="form-control valor_efectivo" placeholder="00000">
+                                                        <input type="text"  val="" class="form-control valor_efectivo" placeholder="cantidad pagar" style="font-size:20px">
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6 contenedor_cambio_efectivo" style="padding-left:0px ">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                                                        <input type="text" val="" class="form-control cambio_efectivo" placeholder="0000" readonly>
+                                                        <input type="text" val="" class="form-control cambio_efectivo" placeholder="cambio" readonly style="font-size:20px">
                                                     </div>
                                                 </div>
 
@@ -138,11 +144,12 @@
                                     <br>
                                 </div>
                                 <!-- agregar Cliente para fiados -->
-                                <div class="row hidden contenedor_credito" style="margin-top:30px">
+                                <!-- agregar clientes a la venta -->
+                                <div class="row contenedor_credito" style="margin-top:30px">
                                     <div class="col-xs-12 col-sm-8 col-md-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                                            <select type="text" class="form-control clienteCrearVenta" id="id_cliente" name="id_cliente" placeholder="nombre del cliente">
+                                            <select type="text" class="form-control clienteCrearVenta" id="id_cliente" name="id_cliente" placeholder="nombre del cliente" style="font-size:18px">
                                                 <option value="anonimo" selected disabled>--Seleccione--</option>
                                     
                                             </select>
@@ -156,11 +163,50 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                 <!-- Info Cliente -->
+                                 <div class="info_cliente">
+                                    <div class="form-group"style="margin-top:10px">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                                                <input type="text" class="form-control input-lg" name="nombre_cliente" id="nombre_cliente" placeholder="Nombre del Cliente"  >
+                                            </div>
+                                    </div>
+                                    <div class="form-group row" >
+                                        <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fas fa-file-alt"></i></span>
+                                                <input type="text" class="form-control input-lg" name="cedula_cliente" id="cedula_cliente" placeholder="Cédula" min="0" >
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+                                                <input type="tel" class="form-control input-lg" name="telefono_cliente" id="telefono_cliente" placeholder="Teléfono" min="0" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" >
+                                        <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                                <input type="text" class="form-control input-lg" name="direccion_cliente" id="direccion_cliente" placeholder="Dirección" >
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+                                                <input type="email" class="form-control input-lg" name="correo_cliente" id="correo_cliente" placeholder="Correo"  >
+                                            </div>
+                                        </div>
+                                    </div>
                               
+                                 </div>
+                                
                             </div>
                             <div id="alerta"></div>
                             <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary pull-right">guardar Venta</button>
+                                    <button type="submit" class="btn btn-primary pull-right btn_crear_venta">guardar Venta</button>
                             </div>
                         </form>
                     </div>

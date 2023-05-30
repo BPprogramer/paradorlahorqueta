@@ -4,4 +4,4 @@
 	
 	 $_SESSION = [];
 	
-	 echo '<script>window.location.href="/horqueta"</script>';
+	 echo '<script>window.location.href="/ferroagro"</script>';

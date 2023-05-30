@@ -1,5 +1,5 @@
 
-
+if($('.tablaProductos').length>0){
  $(".tablaProductos").dataTable().fnDestroy(); //por si me da error de reinicializar
 
 $('.tablaProductos').DataTable({
@@ -9,7 +9,144 @@ $('.tablaProductos').DataTable({
     "proccesing":true
 });
 
+//mostrar informacion del producto
 
+$(document).on('click','.btnInfoProducto',function(){
+    const id_producto = $(this).attr('idProducto');
+    
+    const datos = new FormData();
+    datos.append('id', id_producto);
+    $.ajax({
+        url: "ajax/AjaxProductos.php",
+        method: "POST",
+        data: datos,
+        cache:false,
+        processData:false,
+        contentType:false,
+        dataType:"json",
+        success:function(req){
+          
+            mostrarInfoProducto(req);
+        },
+        error:function(error){
+        
+            console.log(error.responseText)
+        }
+    })
+
+})
+function mostrarInfoProducto(info_producto){
+   
+
+    $('.info_producto').empty()
+    const {codigo, descripcion, id, id_categoria, id_proveedor, imagen,precio_compra,precio_venta,stock,stock_minimo,stock_maximo,ventas} = info_producto;
+    const precio_compra_producto = precio_compra.toLocaleString('en-US', {style: 'currency', currency: 'USD'})
+    const precio_venta_producto = precio_venta.toLocaleString('en-US', {style: 'currency', currency: 'USD'})
+    const datos = new FormData();
+
+    datos.append('id_proveedor',id_proveedor);
+    $.ajax({
+        url:"ajax/AjaxProveedores.php",
+        method:"POST",
+        data:datos,
+        cache:false,
+        contentType:false,
+        processData:false,
+        dataType:"json",
+        success:function(req){
+           
+            console.log(req)
+            $('.info_producto').append(`
+                <li class="list-group-item text-lg" style="font-size:20px">Producto : <strong>${descripcion}</strong></li>
+                <li class="list-group-item text-lg" style="font-size:20px">Proveedor: <strong>${req['nombre']}</strong></li>
+                <li class="list-group-item text-lg" style="font-size:20px">telefono del proveedor: <strong>${req['telefono']}</strong></li>
+             
+                
+                <li class="list-group-item text-lg" style="font-size:20px">Precio de compra: <strong>${precio_compra_producto}</strong></li>
+                <li class="list-group-item text-lg" style="font-size:20px">precio de venta: <strong>${precio_venta_producto}</strong></li>
+                <li class="list-group-item text-lg" style="font-size:20px">Stock Actual: <strong>${stock}</strong></li>
+                <li class="list-group-item text-lg" style="font-size:20px">Stock mínimo: <strong>${stock_minimo}</strong></li>
+                <li class="list-group-item text-lg" style="font-size:20px">Stock máximo: <strong>${stock_maximo}</strong></li> 
+                
+            `)
+        },
+        error:function(error){
+            console.log(error.responseText)
+        }
+
+    })
+
+
+  
+    
+   
+ 
+    
+
+}
+
+
+
+$('#btnAgregarProducto').click(function(){
+     $.ajax({
+        url: "ajax/AjaxProveedores.php",
+        dataType:"json",
+        success:function(req){
+            
+            $('.selectProveedores').append(`<option value="" selected disabled>--seleccione el proveedor--</option>`)
+            req.forEach(proveedor => {
+                $('.selectProveedores').append(`<option value="${proveedor['id']}">${proveedor['nombre']}</option>`)
+            });
+        },
+        error:function(error){
+            console.log(error.responseText)
+        }
+     })
+})
+
+
+  
+
+
+    //<option value="<?php echo $categoria['id']?>"><?php echo $categoria['nombre']?></option>
+
+
+   
+
+
+//calcular el precio del producto 
+
+$('#precio_compra').keyup(calcularPrecioCompra)
+
+$('.porcentaje_input').change(calcularPrecioCompra)
+$('.porcentaje_input').keyup(calcularPrecioCompra)
+//$('#check_porcentaje').change(calcularPrecioCompra)
+$('#check_porcentaje').on('ifChanged',calcularPrecioCompra) //plugin icheck
+
+
+function calcularPrecioCompra(){
+ 
+  
+        if($(".porcentaje").prop('checked')){
+           
+            const porcentaje = parseFloat($('.porcentaje_input').val());
+            const precio_compra = parseFloat($('#precio_compra').val());
+            const precio_venta =precio_compra + precio_compra*porcentaje/100;
+    
+           
+            $('#precio_venta').val(precio_venta)
+            $('#precio_venta').attr("readonly", true)
+        }else{
+            const precio_compra = parseFloat($('#precio_compra').val());
+            $('#precio_venta').val(precio_compra)
+            $('#precio_venta').attr("readonly", false)
+        }
+    
+ 
+}
+
+
+//calculo del codigo 
 $('#idCategoria').change(function(){
     const idCategoria = $(this).val();
  
@@ -54,18 +191,24 @@ $('#idCategoria').change(function(){
 
 
 
-
 $('.form_agregar_producto').submit(function(e){
    e.preventDefault();
    if($('.alerta').length>0){
-    $('.alerta').remove();
-}
+        $('.alerta').remove();
+    }
 
     const idCategoria = $('#idCategoria').val();
+    const idProveedor = $('#idProveedor').val();
 
     const codigo = $('#codigo').val();
     const descripcion = $('#descripcion').val();
     const stock = $('#stock').val();
+
+    const stock_minimo = $('#stock_minimo').val();
+    const stock_maximo = $('#stock_maximo').val();
+    console.log(stock_minimo)
+    console.log(stock_maximo)
+
     const precio_compra = $('#precio_compra').val();
     const precio_venta = $('#precio_venta').val();
 
@@ -74,9 +217,12 @@ $('.form_agregar_producto').submit(function(e){
     const datos = new FormData();
     const datos_producto = true;
     datos.append('idCategoria',idCategoria)
+    datos.append('idProveedor',idProveedor)
     datos.append('codigo',codigo)
     datos.append('descripcion',descripcion)
     datos.append('stock',stock)
+    datos.append('stock_minimo',stock_minimo)
+    datos.append('stock_maximo',stock_maximo)
     datos.append('precio_compra',precio_compra)
     datos.append('precio_venta',precio_venta)
     datos.append('imagen',imagen)
@@ -141,7 +287,7 @@ $('.form_agregar_producto').submit(function(e){
          
         },
         error:function(error){
-           
+           console.log(error.responseText)
         }
     
     })
@@ -190,6 +336,38 @@ $(".imagen").change(function(){
 
 });
 
+$('#editar_precio_compra').keyup(calcularPrecioVentaEditar)
+
+$('.editar_porcentaje_input').change(calcularPrecioVentaEditar)
+$('.editar_porcentaje_input').keyup(calcularPrecioVentaEditar)
+//$('#check_porcentaje').change(calcularPrecioVenta)
+
+
+$('#check_porcentaje_editar').on('ifChanged',calcularPrecioVentaEditar) //plugin icheck
+
+
+function calcularPrecioVentaEditar(){
+
+  
+        if($("#check_porcentaje_editar").prop('checked')){
+           
+            const porcentaje = parseFloat($('.editar_porcentaje_input').val());
+
+            const precio_compra = parseFloat($('#editar_precio_compra').val());
+            const precio_venta =precio_compra + precio_compra*porcentaje/100;
+    
+           
+            $('#editar_precio_venta').val(precio_venta)
+            $('#editar_precio_venta').attr("readonly", true)
+        }else{
+            const precio_compra = parseFloat($('#editar_precio_compra').val());
+            $('#editar_precio_venta').val(precio_compra)
+            $('#editar_precio_venta').attr("readonly", false)
+        }
+    
+ 
+}
+
 
 /* traerme los datos a editar*/
 $(document).on('click', '.btnEditarProducto',function(){
@@ -207,13 +385,17 @@ $(document).on('click', '.btnEditarProducto',function(){
         processData:false,
         dataType:'json',
         success:function(req){
-        
-         
+            const precio_compra = req['precio_compra']
+            const precio_venta = req['precio_venta']
+            const porcentaje = (precio_venta*100/precio_compra) - 100;
+            $('.editar_porcentaje_input').val(porcentaje)
             $('#id_producto').val(req['id']);
             $('#editar_codigo').val(req['codigo'])
             $('#editar_codigo').attr('readonly', true)
             $('#editar_descripcion').val(req['descripcion'])
             $('#editar_stock').val(req['stock'])
+            $('#editar_stock_minimo').val(req['stock_minimo'])
+            $('#editar_stock_maximo').val(req['stock_maximo'])
             $('#editar_precio_compra').val(req['precio_compra'])
             $('#editar_precio_venta').val(req['precio_venta'])
             $('#imagen_actual').val(req['imagen'])
@@ -221,8 +403,27 @@ $(document).on('click', '.btnEditarProducto',function(){
 
            
             const id_categoria = req['id_categoria'];
+            const id_proveedor = req['id_proveedor'];
             const datosCategoria = new FormData();
             datosCategoria.append('id_categoria_consulta', id_categoria);
+
+               $.ajax({
+                    url: "ajax/AjaxProveedores.php",
+                    dataType:"json",
+                    success:function(req){
+                        req.forEach(proveedor => {
+                            let proveedorActual= ''
+                            
+                            if(proveedor['id']==id_proveedor){
+                                proveedorActual = 'selected';
+                            }
+                            $('.selectProveedores').append(`<option ${proveedorActual} value="${proveedor['id']}">${proveedor['nombre']}</option>`)
+                        });
+                    },
+                    error:function(error){
+                        console.log(error.responseText)
+                    }
+                })
 
             $.ajax({
                 url: 'ajax/AjaxProductos.php',
@@ -254,7 +455,7 @@ $(document).on('click', '.btnEditarProducto',function(){
 
 
 
-//envio del formulario
+//envio del formulario editar
 
 $('.form_editar_producto').submit(function(e){
     if($('.alerta').length>0){
@@ -270,9 +471,15 @@ $('.form_editar_producto').submit(function(e){
      }
    
      const id_producto = $('#id_producto').val();
-  
+     const editar_id_proveedor = $('#editar_id_proveedor').val();
+    
+   
+
      const editar_descripcion = $('#editar_descripcion').val();
      const editar_stock = $('#editar_stock').val();
+     const editar_stock_minimo = $('#editar_stock_minimo').val();
+     const editar_stock_maximo = $('#editar_stock_maximo').val();
+
      const editar_precio_compra = $('#editar_precio_compra').val();
      const editar_precio_venta = $('#editar_precio_venta').val();
  
@@ -282,9 +489,12 @@ $('.form_editar_producto').submit(function(e){
 
 
      datos.append('id_producto',id_producto);
+     datos.append('editar_id_proveedor',editar_id_proveedor);
      datos.append('editar_descripcion',editar_descripcion)
      datos.append('editar_imagen', editar_imagen);
      datos.append('editar_stock',editar_stock)
+     datos.append('editar_stock_minimo',editar_stock_minimo)
+     datos.append('editar_stock_maximo',editar_stock_maximo)
      datos.append('editar_precio_compra',editar_precio_compra)
      datos.append('editar_precio_venta',editar_precio_venta)
      //datos.append('imagen',imagen)
@@ -451,3 +661,5 @@ $(document).on('click', '.btnEliminarProducto',function(){
     })
 
 })
+
+}

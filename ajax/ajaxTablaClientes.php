@@ -34,13 +34,20 @@
                         $botones .= "<button class='btn btn-warning btnEditarCliente' idCliente='".$cliente['id']."' style='margin-right:20px' data-toggle='modal' data-target='#editarCliente'><i class='fa fa-pencil' ></i></button>";
                         $botones .= "<button class='btn btn-danger btnEliminarCliente' deuda_cl ='".$deuda_cliente."'  idCliente='".$cliente['id']."'  data-toggle='moda' data-target='#modalEliminarCliente'><i class='fa fa-times'  </i></button>";
                         $botones .= "</div>";
+                        $correo = $cliente['correo'];
+                        if(strlen($correo)==0){
+                            $correo = 'no especifica';
+                        }
                         
                         
                         $datoJson.= '[
                                 "'.$i.'",
                                 "'.$cliente['nombre'].'",
-                                "'.$cliente['direccion'].'",
+                                "'.$cliente['cedula'].'",
                                 "'.$cliente['telefono'].'",
+                                "'.$cliente['direccion'].'",
+                                "'.$correo.'",
+                                
                                 "'.$deuda.'",
                         
                              

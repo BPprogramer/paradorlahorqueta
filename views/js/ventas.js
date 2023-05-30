@@ -17,18 +17,29 @@ let productos;
 
 let total;
 
-let metodo_pago;
+let metodo_pago='efectivo';
 
 let abono=0;
 let deuda=0;
 
 let total_precio_de_compra;
 
+let nombre_cliente = '';
+let cedula_cliente = '';
+let telefono_cliente = '';
+let direccion_cliente = '';
+let correo_cliente = '';
 
 
 $(document).ready(function(){
- 
+    $('.cambio_efectivo').number(true,0)
+    $('.valor_efectivo').number(true,0)
+    $('.valor_deuda').number(true,0)
+$('.valor_abono').number(true,0)
+    
 });
+
+
 
 
 let width_page;
@@ -51,22 +62,35 @@ $(window).resize(function() {
 
 
 $(document).ready(function(){
-    
-    if($('.clienteCrearVenta').length>0){
-        $.ajax({
-            url:'ajax/AjaxClientes.php',
-            dataType: "json",
-            success:function(req){
-                
-               req.forEach(cliente =>{
-                    $('.clienteCrearVenta').append(`<option value='${cliente.id}'>${cliente.nombre}</option>`);
-               })
-            },
-            error:function(error){
-                console.log(error)
-            }
-        })
+    let cliente_seleccionado;
+    if(window.location.href.indexOf('editar-venta')!==-1){
+        cliente_seleccionado = $('#id_cliente_venta').attr('id_cliente_venta')
     }
+        
+        if($('.clienteCrearVenta').length>0){
+
+            $.ajax({
+                url:'ajax/AjaxClientes.php',
+                dataType: "json",
+                success:function(req){
+             
+                   req.forEach(cliente =>{
+                    if(cliente.id == cliente_seleccionado){
+                        $('.clienteCrearVenta').append(`<option selected value='${cliente.id}'>${cliente.nombre}</option>`);
+                    }else{
+                        $('.clienteCrearVenta').append(`<option value='${cliente.id}'>${cliente.nombre}</option>`);
+                    }
+                      
+                   })
+                },
+                error:function(error){
+                    console.log(error)
+                }
+            })
+        }
+       
+   
+
 })
 
 
@@ -144,7 +168,7 @@ $(".tablaProductosVentas").on('click', '.agregarProducto', function(){
                     </div>  
                 </div>            
             `)
-            $('.precio_producto').number(true,2)
+            $('.precio_producto').number(true,0)
             
        
             sumarTotalPrecios();   
@@ -471,33 +495,66 @@ function listarProductos(){
 
 //seleccionar metodo dde pago
 $('#metodo_pago').change(function(){
-    $('.contenedor_credito').addClass('hidden')
+    $('.cambio_efectivo').val(0)
+    $('.valor_efectivo').val(0)
+    $('.valor_deuda').val(0)
+    $('.valor_abono').val(0)
+    //dejar los datos del cliente vacios al cambiar el metodo de pago
+    $('#nombre_cliente').val('')
+    $('#cedula_cliente').val('')
+    $('#telefono_cliente').val('')
+    $('#direccion_cliente').val('')
+    $('#correo_cliente').val('')
+
+    //al cambiar el metodo de pago dejar en (seleccion un cliente) el selected
+    $('.clienteCrearVenta option:first').prop('selected',true);
+
+    //quitar la propeidad de solo lectura al elegir un cliente
+    $('#correo_cliente').prop('readonly',false);
+    $('#nombre_cliente').prop('readonly',false)
+    $('#cedula_cliente').prop('readonly',false)
+    $('#telefono_cliente').prop('readonly',false)
+    $('#direccion_cliente').prop('readonly',false)
+    $('#correo_cliente').prop('readonly',false)
+
+    //resetear variables
+    nombre_cliente = '';
+    cedula_cliente = '';
+    telefono_cliente = '';
+    direccion_cliente = '';
+    correo_cliente = '';
+
+    //resetear valores 
+    $('.contenedor_metodo_pago input').val('')
+    
+    //$('.contenedor_credito').addClass('hidden')
     const metodo = $(this).val();
-   
+    $('.info_cliente').removeClass('hidden');
     if(metodo == "efectivo"){
        
-        $(this).parent().parent().removeClass('col-md-6')
-        $(this).parent().parent().addClass('col-md-4')
-        $('.contenedor_metodo_pago').empty();
-        $('.contenedor_metodo_pago').append(`
-            <div class="col-xs-6 contenedor_valor_efectivo" style="">
-                <div class="input-group">
-                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                     <input type="text"  val="" class="form-control valor_efectivo" placeholder="00000">
-                </div>
+        // $(this).parent().parent().removeClass('col-md-6')
+        // $(this).parent().parent().addClass('col-md-4')
+        // $('.contenedor_metodo_pago').empty();
+        // $('.contenedor_metodo_pago').append(`
+        //     <div class="col-xs-6 contenedor_valor_efectivo" style="">
+        //         <div class="input-group">
+        //              <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+        //              <input type="text"  val="" class="form-control valor_efectivo" placeholder="00000">
+        //         </div>
               
-            </div>
-            <div class="col-xs-6 contenedor_cambio_efectivo" style="padding-left:0px ">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                    <input type="text" val="" class="form-control cambio_efectivo" placeholder="0000" readonly>
-                </div>
-            </div>
-        `)
-        $('.cambio_efectivo').number(true,2)
-        $('.valor_efectivo').number(true,2)
+        //     </div>
+        //     <div class="col-xs-6 contenedor_cambio_efectivo" style="padding-left:0px ">
+        //         <div class="input-group">
+        //             <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+        //             <input type="text" val="" class="form-control cambio_efectivo" placeholder="0000" readonly>
+        //         </div>
+        //     </div>
+        // `)
+        $('.cambio_efectivo').number(true,0)
+        $('.valor_efectivo').number(true,0)
       
     }else if(metodo=='credito'){
+        $('.info_cliente').addClass('hidden');
         $('.contenedor_credito').removeClass('hidden')
         $(this).parent().parent().removeClass('col-md-6')
         $(this).parent().parent().addClass('col-md-4')
@@ -506,19 +563,19 @@ $('#metodo_pago').change(function(){
             <div class="col-xs-6 contenedor_valor_abono" style="">
                 <div class="input-group">
                      <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                     <input type="text"  val="" class="form-control valor_abono" placeholder="abono">
+                     <input type="text"  val="" class="form-control valor_abono" placeholder="abono" style="font-size:20px">
                 </div>
               
             </div>
             <div class="col-xs-6 contenedor_valor_deuda" style="padding-left:0px ">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                    <input type="text" val="" class="form-control valor_deuda" placeholder="deuda" readonly>
+                    <input type="text" val="" class="form-control valor_deuda" placeholder="deuda" readonly style="font-size:20px">
                 </div>
             </div>
         `)
-        $('.valor_deuda').number(true,2)
-        $('.valor_abono').number(true,2)
+        $('.valor_deuda').number(true,0)
+        $('.valor_abono').number(true,0)
         
     }else{
         $('.contenedor_metodo_pago').empty();
@@ -531,6 +588,8 @@ $('#metodo_pago').change(function(){
 //cambio en efectivo
 $('.contenedor_metodo_pago').on('input', 'input.valor_efectivo', calcular_cambio)
 $('.contenedor_metodo_pago').on('input', 'input.valor_abono', calcular_deuda)
+$('.valor_abono').on('input',calcular_deuda)
+$('.valor_efectivo').on('input',calcular_deuda)
 
 function calcular_cambio(){
 
@@ -544,9 +603,9 @@ function calcular_cambio(){
         
 }
 function calcular_deuda(){
-    console.log(metodo_pago)
+
     const valor_efectivo = $(this).val();
-  
+    console.log(valor_efectivo)
     const total_venta = parseFloat($('#total_venta').text().replace(/,/g, ''));
 
     const cambio_efectivo = valor_efectivo-total_venta
@@ -585,7 +644,45 @@ function metodoPago(){
 //id del cliente al crear la venta
 $('.clienteCrearVenta').change(function(){
     id_cliente = $(this).val();
-   // console.log(id_cliente)
+    const datos = new FormData();
+    datos.append('id_cliente',id_cliente);
+    $.ajax({
+        url:'ajax/AjaxClientes.php',
+        method:'POST',
+        data:datos,
+        contentType:false,
+        cache:false,
+        processData:false,
+        dataType:'json',
+        success:function(req){
+            //if($('.info_cliente '))
+            if($('.info_cliente').hasClass('hidden')){
+                $('.info_cliente').removeClass('hidden')  
+            }
+          
+            nombre_cliente = req['nombre'];
+            cedula_cliente = req['cedula'];
+            telefono_cliente = req['telefono'];
+            direccion_cliente = req['direccion'];
+            correo_cliente = req['correo'];
+            console.log(direccion_cliente)
+            $('#nombre_cliente').val(nombre_cliente)
+            $('#cedula_cliente').val(cedula_cliente)
+            $('#telefono_cliente').val(telefono_cliente)
+            $('#direccion_cliente').val(direccion_cliente)
+            $('#correo_cliente').val(correo_cliente)
+            $('#correo_cliente').prop('readonly',true);
+            $('#nombre_cliente').prop('readonly',true)
+            $('#cedula_cliente').prop('readonly',true)
+            $('#telefono_cliente').prop('readonly',true)
+            $('#direccion_cliente').prop('readonly',true)
+            $('#correo_cliente').prop('readonly',true)
+          
+        },
+        error:function(error){
+            console.log(error.responseText)
+        }
+    })
 })
 //id del cliente al editar la venta
 
@@ -602,7 +699,9 @@ $('.clienteCrearVenta').change(function(){
 
 $('#formulario_editar').submit(validar_enviar);
 function validar_enviar(e){
-   
+ 
+   metodo_pago = $('#metodo_pago').val();
+   console.log(metodo_pago)
    e.preventDefault();
     $('#alerta').empty()
     if(!($('.productosVenta').children().length > 0)){
@@ -615,12 +714,15 @@ function validar_enviar(e){
     id_vendedor = $('#id_vendedor').val();
   
 
- 
+    id_cliente = $('.clienteCrearVenta').val();
+   
     if(id_cliente ==undefined && metodo_pago=='credito'){
       
-        $('#alerta').append('<div class="alert alert-danger text-center">Para Fiar es necesario elegir un cliente</div>"')
-        return;
+            $('#alerta').append('<div class="alert alert-danger text-center">Para Fiar es necesario elegir un cliente</div>"')
+            return;
     }
+
+   
     if($('.clienteEditarVenta').length>0){
         id_cliente = $('.clienteEditarVenta').val();
        
@@ -632,11 +734,10 @@ function validar_enviar(e){
         array.push( codigo,id_vendedor,productos,total)
     }
     
-    
-    
+
 
     if(array.some(dato=> dato==undefined)){
-        $('#alerta').append('<div class="alert alert-danger text-center">por favor llenar el formulario de maner correcta</div>"')
+        $('#alerta').append('<div class="alert alert-danger text-center">por favor llenar el formulario de maner correcta a</div>"')
         return;
     }
     if(metodo_pago==undefined){
@@ -645,6 +746,7 @@ function validar_enviar(e){
     }
 
     if(metodo_pago=='efectivo'){
+
         const valor_efectivo = $('.valor_efectivo').val();
         const cambio_efectivo = $('.cambio_efectivo').val();
         deuda = 0;
@@ -678,16 +780,20 @@ function validar_enviar(e){
     }
 
    
-  
+    
     enviarDatos();
 }
 
 
 function enviarDatos(){
-  
+    $('.btn_crear_venta').prop('disabled',true)
  
    //console.log(productos)
-   
+   cedula_cliente = $('#cedula_cliente').val()
+   nombre_cliente = $('#nombre_cliente').val()
+   telefono_cliente = $('#telefono_cliente').val()
+   direccion_cliente = $('#direccion_cliente').val()
+   correo_cliente = $('#correo_cliente').val()
     const datos = new FormData();
     datos.append('codigo',codigo)
     
@@ -696,8 +802,13 @@ function enviarDatos(){
     datos.append('deuda',deuda)
     datos.append('total',total)
     datos.append('total_costo',total_precio_de_compra)
-    
     datos.append('metodo_pago',metodo_pago)
+    datos.append('nombre_cliente',nombre_cliente)
+    datos.append('cedula_cliente',cedula_cliente)
+    datos.append('telefono_cliente',telefono_cliente)
+    datos.append('direccion_cliente',direccion_cliente)
+    datos.append('correo_cliente',correo_cliente)
+
     if(metodo_pago == 'credito'){
         datos.append('id_cliente',id_cliente);
         datos.append('abono',abono)
@@ -718,6 +829,7 @@ function enviarDatos(){
             dataType:"json",
             success:function(req){
                 console.log(req);
+                $('.btn_crear_venta').prop('disabled',false)
                 if(req=='success'){
                     console.log('entro');
                     
@@ -731,7 +843,7 @@ function enviarDatos(){
                     }).then((result) => {
                       
                         if (result.isConfirmed) {
-                            location.reload()
+                            window.location.href = 'administrar-ventas';
                            
                         } 
     
@@ -760,7 +872,7 @@ function enviarDatos(){
             cache:false,
             dataType:"json",
             success:function(req){
-                // console.log(req)
+                console.log(req)
                 if(req=='success'){
                   
                     

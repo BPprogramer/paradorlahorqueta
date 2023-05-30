@@ -18,6 +18,12 @@ class imprimirFactura{
     public $cliente;
     public $vendedor;
     public $total_pagar;
+    public $nombre_cliente;
+    public $cedula_cliente;
+    public $telefono_cliente;
+    public $direccion_cliente;
+    public $correo_cliente;
+    public $abono;
     
   
     
@@ -27,7 +33,13 @@ class imprimirFactura{
         $this->productos = json_decode($venta['productos'],true);
         $this->total = number_format($venta['total'],2);
         $this->deuda = number_format($venta['deuda'],2);
-        $this->total_pagar = number_format($venta['pago_total'],2);
+        $this->abono = number_format($venta['total']-$venta['deuda'],2);
+        $this->total_pagar = number_format($venta['total'],2);
+        $this->nombre_cliente = $venta['nombre_cliente'];
+        $this->cedula_cliente = $venta['cedula_cliente'];
+        $this->telefono_cliente = $venta['telefono_cliente'];
+        $this->correo_cliente = $venta['correo'];
+        $this->direccion_cliente = $venta['direccion'];
        
 
         $this->vendedor = $venta['nombre_vendedor'];
@@ -38,6 +50,7 @@ class imprimirFactura{
 
     }
     public function imprimir(){
+      
         require('tcpdf_include.php'); 
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->startPageGroup();
@@ -45,24 +58,10 @@ class imprimirFactura{
         $bloque_1 = <<<EOF
         <table>
             <tr>
-                <td style="width:150px"><img src="images/horqueta.jpg"></td>
-                <td style="background-color:white; width:140px">
-                    <div style="font-size:8.5px; text-align:right; line-height:15px;">
-                   
-                    NIT: 71.759.963-9
-                    <br>
-                    Dirección: Calle 44B 92-11
-                    </div>
-                </td>
-                <td style="background-color:white; width:140px">
-                    <div style="font-size:8.5px; text-align:right; line-height:15px;">
-                   
-                    Tel: 32165496877
-                    <br>
-                    Email: horqueta@horqueta.com
-                    </div>
-                </td>
-                <td style="background-color:white; width:110px; text-align:center; color:red">
+                <td style="width:400px"><img src="images/baner_gildardo.PNG"></td>
+               
+             
+                <td style="background-color:white; width:140px; text-align:center; color:red">
                     <br><br>Factura N.<br>$this->codigo<br>
                 </td>
             </tr>
@@ -78,19 +77,52 @@ class imprimirFactura{
             <table style="font-size:10px; padding:5px 10px">
                 <tr>
                     <td style="border:1px solid #666; background-color:white; width:390px">
-                        Cliente: <strong>Anonimo</strong>
+                        Vendedor: <strong>$this->vendedor</strong>
                     </td>
                     <td style="border:1px solid #666; background-color:white; width:150px">
                         Fecha: <strong>$this->fecha</strong>
                     </td>
                 </tr>
+            
+            </table>
+            
+            <h3> Cliente</h3>
+            <br>
+            <table style="font-size:10px; padding:5px 10px">
                 <tr>
-                    <td style="border:1px solid #666; background-color:white; width:540px">
-                        Vendedor:   <strong>$this->vendedor</strong>
+                    <td style="border:1px solid #666; background-color:white; width:270px">
+                        Nombre:   <strong>$this->nombre_cliente</strong>
                     </td>
-                   
+                    <td style="border:1px solid #666; background-color:white; width:270px">
+                       Cédula:   <strong>$this->cedula_cliente</strong>
+                    </td>
+                  
+                
+                </tr>
+            
+            </table>
+
+            <table style="font-size:10px; padding:5px 10px">
+                <tr>
+                    <td style="border:1px solid #666; background-color:white; width:270px">
+                        Telefono:   <strong>$this->telefono_cliente</strong>
+                    </td>
+                    <td style="border:1px solid #666; background-color:white; width:270px">
+                        Correo:   <strong>$this->correo_cliente</strong>
+                    </td>
                 </tr>
             </table>
+            <table style="font-size:10px; padding:5px 10px">
+                <tr>
+                    <td style="border:1px solid #666; background-color:white; width:270px">
+                        Dirección:   <strong>$this->direccion_cliente</strong>
+                    </td>
+                    
+                </tr>
+            </table>
+
+          
+           
         EOF;
         $pdf->writeHTML($bloque_2, false, false, false, false, '');
 
@@ -144,13 +176,13 @@ class imprimirFactura{
                 </tr>
                 <tr>
                     <td style="border-right:1px solid #666;background-color:white; width:340px"> </td>
-                    <td style="border:1px solid #666; background-color:white; width:100px">Credito: </td>
-                    <td style="border:1px solid #666;border-left::1px solid #666; background-color:white; width:100px"><strong>$ $this->deuda</strong></td>
+                    <td style="border:1px solid #666; background-color:white; width:100px">Abono: </td>
+                    <td style="border:1px solid #666;border-left::1px solid #666; background-color:white; width:100px"><strong>$ $this->abono</strong></td>
                 </tr>
                 <tr>
                     <td style="border-right:1px solid #666;background-color:white; width:340px"> </td>
                     <td style="border:1px solid #666; background-color:white; width:100px">Total Pagar: </td>
-                    <td style="border:1px solid #666;border-left::1px solid #666; background-color:white; width:100px"><strong>$ $this->total_pagar</strong></td>
+                    <td style="border:1px solid #666;border-left::1px solid #666; background-color:white; width:100px"><strong>$ $this->deuda</strong></td>
                 </tr>
                
             </table>

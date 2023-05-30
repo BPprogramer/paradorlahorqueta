@@ -20,11 +20,18 @@
                         $i++;
                         $imagen = "<img class='img-thumbmail' style='width:40px' src='".$producto['imagen']."'>";
                        
-                     
+                        if($producto['stock']<$producto['stock_minimo']){
+                            $stock = "<button class='btn btn-danger'>".$producto['stock']."</button>";
+                        }else if($producto['stock']>$producto['stock_maximo']){
+                            $stock = "<button class='btn btn-warning'>".$producto['stock']."</button>";
+                        }else{
+                            $stock = "<button class='btn btn-success'>".$producto['stock']."</button>";
+                        }
+                        
                       
-                            $stock = "<button class='btn btn-secondary stock stock_".$producto['id']."'>".$producto['stock']."</button>";
+                 
                     
-                            $precio = "<button class='btn btn-success'>$".number_format($producto['precio_venta'])."</button>";
+                        $precio = "<button style='font-size:2rem' class='btn'>$".number_format($producto['precio_venta'])."</button>";
                     
                 
                       

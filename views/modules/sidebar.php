@@ -20,13 +20,15 @@
 			<?php if($_SESSION['perfil']=='administrador' || $_SESSION['perfil']=='especial'){?>
 				<li>
 					<a href="categorias">
-						<i class="fa fa-th"></i>
+						<i class="fas fa-tags"></i>
+
 						<span>Categorias</span>
 					</a>
 				</li>
 				<li>
 					<a href="productos">
-						<i class="fa fa-product-hunt"></i>
+
+						<i class="fas fa-shopping-bag"></i>
 						<span>productos</span>
 					</a>
 				</li>
@@ -37,7 +39,8 @@
 				<li>
 					<a href="creditos">
 			
-						<i class="fa fa-money"></i>
+						<i class="fas fa-hand-holding-usd"></i>
+
 
 
 						<span>Creditos</span>
@@ -55,10 +58,19 @@
 						<span>Clientes</span>
 					</a>
 				</li>
+				<?php if($_SESSION['perfil']=='administrador'){?>
+					<li>
+						<a href="proveedores">
+							<i class="fa-solid fa-truck-field"></i>
+							<span>Proveedores</span>
+						</a>
+					</li>
+				<?php }?>
 				
 				<li class="treeview">
 					<a href="#">
-						<i class="fa fa-list-ul"></i>
+						<i class="fas fa-shopping-cart"></i>
+
 						<span>Ventas</span>
 						<span class="pull-right-container">
 							<i class="fa fa-angle-left pull-right"></i>

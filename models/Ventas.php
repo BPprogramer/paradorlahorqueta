@@ -43,8 +43,8 @@
         }
         
         public function registrarVenta($args, $tabla){
-            
-            $stmt = Conexion::conectarDB()->prepare("INSERT INTO $tabla (codigo, id_vendedor, productos,  total, total_costo , deuda ,metodo_pago, fecha) VALUES ( :codigo,  :id_vendedor, :productos, :total, :total_costo, :deuda ,:metodo_pago, :fecha)");
+            $id_cliente = $args['id_cliente']??'';
+            $stmt = Conexion::conectarDB()->prepare("INSERT INTO $tabla (codigo, id_vendedor, productos,  total, total_costo , deuda ,metodo_pago,id_cliente, nombre_cliente, cedula_cliente, telefono_cliente, direccion, correo, fecha) VALUES ( :codigo,  :id_vendedor, :productos, :total, :total_costo, :deuda ,:metodo_pago, :id_cliente, :nombre_cliente, :cedula_cliente, :telefono_cliente, :direccion, :correo,  :fecha)");
             $stmt->bindParam(":codigo", $args['codigo'], PDO::PARAM_STR);
          
             $stmt->bindParam(":id_vendedor", $args['id_vendedor'], PDO::PARAM_STR);
@@ -56,6 +56,12 @@
             $stmt->bindParam(":total_costo", $args['total_costo'], PDO::PARAM_STR);
             $stmt->bindParam(":deuda", $args['deuda'], PDO::PARAM_STR);
             $stmt->bindParam(":metodo_pago", $args['metodo_pago'], PDO::PARAM_STR);
+            $stmt->bindParam(":id_cliente",$id_cliente , PDO::PARAM_STR);
+            $stmt->bindParam(":nombre_cliente", $args['nombre_cliente'], PDO::PARAM_STR);
+            $stmt->bindParam(":cedula_cliente", $args['cedula_cliente'], PDO::PARAM_STR);
+            $stmt->bindParam(":telefono_cliente", $args['telefono_cliente'], PDO::PARAM_STR);
+            $stmt->bindParam(":direccion", $args['direccion_cliente'], PDO::PARAM_STR);
+            $stmt->bindParam(":correo", $args['correo_cliente'], PDO::PARAM_STR);
             $stmt->bindParam(":fecha",$args['fecha'], PDO::PARAM_STR);
  
 
@@ -68,8 +74,12 @@
         }
 
         public function actualizarVenta($args, $tabla){
-          
-            $stmt = Conexion::conectarDB()->prepare("UPDATE  $tabla SET codigo=:codigo,  id_vendedor=:id_vendedor, productos=:productos, total=:total, total_costo=:total_costo, deuda=:deuda ,metodo_pago=:metodo_pago WHERE id= :id");
+       
+            $id_cliente = $args['id_cliente']??'';
+            $stmt = Conexion::conectarDB()->prepare("UPDATE  $tabla SET codigo=:codigo,  id_vendedor=:id_vendedor, productos=:productos, 
+            total=:total, total_costo=:total_costo, deuda=:deuda ,metodo_pago=:metodo_pago,id_cliente=:id_cliente,
+            nombre_cliente=:nombre_cliente, cedula_cliente=:cedula_cliente , telefono_cliente=:telefono_cliente,
+            direccion=:direccion, correo=:correo WHERE id= :id");
             $stmt->bindParam(":codigo", $args['codigo'], PDO::PARAM_STR);
         
             $stmt->bindParam(":id_vendedor", $args['id_vendedor'], PDO::PARAM_STR);
@@ -79,6 +89,12 @@
             $stmt->bindParam(":total_costo", $args['total_costo'], PDO::PARAM_STR);
             $stmt->bindParam(":deuda", $args['deuda'], PDO::PARAM_STR);
             $stmt->bindParam(":metodo_pago", $args['metodo_pago'], PDO::PARAM_STR);
+            $stmt->bindParam(":id_cliente",$id_cliente , PDO::PARAM_STR);
+            $stmt->bindParam(":nombre_cliente", $args['nombre_cliente'], PDO::PARAM_STR);
+            $stmt->bindParam(":cedula_cliente", $args['cedula_cliente'], PDO::PARAM_STR);
+            $stmt->bindParam(":telefono_cliente", $args['telefono_cliente'], PDO::PARAM_STR);
+            $stmt->bindParam(":direccion", $args['direccion_cliente'], PDO::PARAM_STR);
+            $stmt->bindParam(":correo", $args['correo_cliente'], PDO::PARAM_STR);
             $stmt->bindParam(":id", $args['id'],  PDO::PARAM_STR);
           
             if($stmt->execute()){

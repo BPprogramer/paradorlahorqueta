@@ -22,7 +22,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>La Horqueta</title>
+  <title>Ferro Agro</title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -38,7 +38,8 @@
   <link rel="stylesheet" href="views/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="views/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="views/bower_components/font-awesome/css/font-awesome.min.css"> -->
+  <script src="https://kit.fontawesome.com/a3e5ca3374.js" crossorigin="anonymous"></script>
 
   <!-- Ionicons -->
   <link rel="stylesheet" href="views/bower_components/Ionicons/css/ionicons.min.css">
@@ -129,6 +130,7 @@ CUERPO DOCUMENTO sidebar-collapse
                    $_GET['ruta']=='reporte-ventas' ||
                    $_GET['ruta']=='descargar-reporte' ||
                    $_GET['ruta']=='creditos' ||
+                   $_GET['ruta']=='proveedores' ||
               
                    $_GET['ruta'] == 'logout'
                ){
@@ -214,6 +216,7 @@ CUERPO DOCUMENTO sidebar-collapse
     <script src="views/js/inicio/productos_top.js"></script>
     <script src="views/js/imprimir_facturas.js"></script>
     <script src="views/js/creditos.js"></script>
+    <script src="views/js/proveedores.js"></script>
 
     <script src="views/plugins/jquery_number/jquerynumber.min.js"></script>
 

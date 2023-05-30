@@ -21,7 +21,7 @@
     <section class="content" id="productosPage">
         <div class="box">
             <div class="box-header with-border">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#agregarProducto">Agregar Producto</button>
+                <button class="btn btn-primary" id="btnAgregarProducto" data-toggle="modal" data-target="#agregarProducto">Agregar Producto</button>
             </div>
             <div class="box-body">
                 <table class="table table-bordered table-striped dt-responsive tablaProductos" style="width:100%">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="box-body">
-                    <div class="form-group">
+                        <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
                                 <select name="id_categoria" class="form-control input-lg" id="idCategoria">
@@ -82,6 +82,17 @@
                                 <input type="text" class="form-control input-lg" name="descripcion" id="descripcion" placeholder="Ingresar descripcion Producto" >
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                <select name="id_proveedor" class="form-control input-lg selectProveedores" id="idProveedor">
+                                    
+                                   
+                                </select>
+                            </div>
+                        </div>
+                       
                     
                         <div class="form-group">
                             <div class="input-group">
@@ -89,6 +100,23 @@
                                 <input type="number" class="form-control input-lg" name="stock" id="stock" placeholder="cantidad de productos en el stock" min="0" >
                             </div>
                         </div>
+                        <!-- stock minimo y maximo -->
+                        <div class="form-group row">
+                            <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-caret-down"></i></span>
+                                    <input type="number" class="form-control input-lg" name="stock_minimo" id="stock_minimo" placeholder="stock mínimo" min="0" >
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-caret-up"></i></span>
+                                    <input type="number" class="form-control input-lg" name="stock_maximo" id="stock_maximo" placeholder="stock máximo" min="0" >
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <!-- PRecio de compar y venta -->
                         <div class="form-group row">
                             <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
                                 <div class="input-group">
@@ -102,7 +130,7 @@
                                     <input type="number"  step="any" class="form-control input-lg" name="precio_venta" id="precio_venta" precio_venta="" placeholder="Precio de venta" >
                                 </div>
                                 <br>
-                         <!--        <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-6">
                                     <div class="form-group">
                                         <label for="">
                                             <input type="checkbox" class="minimal porcentaje" id="check_porcentaje" checked >
@@ -115,7 +143,7 @@
                                         <input type="number" class="form-control input-lg porcentaje_input" min="0" value="40" required>
                                         <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                                     </div>
-                                </div> -->
+                                </div> 
                             </div>
                         </div>
                         <div class="form-group form_group_imagen">
@@ -133,6 +161,30 @@
                 <?php
                     
                 ?>
+            </form>
+        </div>
+  </div>
+</div>
+<!-- info producto -->
+<div id="infoProducto" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form role="form" class="formulario_guardar_cliente">
+                <div class="modal-header" style="background-color: #3c8dbc; color:white">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Información del Producto</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="info_producto list-group">
+
+                    </ul>
+
+                </div>
+              
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Cerrar</button>
+                    
+                </div>
             </form>
         </div>
   </div>
@@ -169,6 +221,14 @@
                                 <input type="text" class="form-control input-lg" name="editar_descripcion" id="editar_descripcion" placeholder="Ingresar descripcion Producto" >
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                <select name="id_proveedor" class="form-control input-lg selectProveedores" id="editar_id_proveedor">
+                                    <option value="" disabled>--seleccione el proveedor--</option>
+                                </select>
+                            </div>
+                        </div>
                     
                         <div class="form-group">
                             <div class="input-group">
@@ -176,6 +236,24 @@
                                 <input type="number" class="form-control input-lg" name="editar_stock" id="editar_stock" placeholder="cantidad de productos en el stock" min="0" >
                             </div>
                         </div>
+
+                        <!-- stock minimo y maximo -->
+                        <div class="form-group row">
+                                <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-caret-down"></i></span>
+                                        <input type="number" class="form-control input-lg" name="editar_stock_minimo" id="editar_stock_minimo" placeholder="stock mínimo" min="0" >
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-caret-up"></i></span>
+                                        <input type="number" class="form-control input-lg" name="editar_stock_maximo" id="editar_stock_maximo" placeholder="stock máximo" min="0" >
+                                    </div>
+                                </div>
+                        </div>
+
+                        <!-- precios de compra venta y porcentaje -->
                         <div class="form-group row">
                             <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
                                 <div class="input-group">
@@ -189,7 +267,7 @@
                                     <input type="number"  step="any" class="form-control input-lg" name="editar_precio_venta" id="editar_precio_venta" placeholder="Precio de venta">
                                 </div>
                                 <br>
-                             <!--    <div class="col-xs-12 col-sm-6">
+                             <div class="col-xs-12 col-sm-6">
                                     <div class="form-group">
                                         <label for="">
                                             <input type="checkbox" class="minimal editar_porcentaje" id="check_porcentaje_editar" checked >
@@ -202,7 +280,7 @@
                                         <input type="number" class="form-control input-lg editar_porcentaje_input" min="0" value="40" required>
                                         <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                                     </div>
-                                </div> -->
+                                </div> 
                             </div>
                         </div>
                         <div class="form-group form_group_imagen_editar">

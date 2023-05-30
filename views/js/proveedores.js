@@ -1,20 +1,20 @@
-if(localStorage.getItem('rango')!=null){
-    $('#daterange_btn span').html(localStorage.getItem('rango'));
-   
-}
-$(".tablaClientes").dataTable().fnDestroy(); //por si me da error de reinicializar
 
-$('.tablaClientes').DataTable({
-    ajax: 'ajax/ajaxTablaClientes.php',
+if($('.tablaProveedores').length>0){
+
+
+$(".tablaProveedores").dataTable().fnDestroy(); //por si me da error de reinicializar
+
+$('.tablaProveedores').DataTable({
+    ajax: 'ajax/AjaxTablaProveedores.php',
     "deferRender":true,
     "retrieve":true,
     "proccesing":true
 });
 
-// if($('.tablaClientes').length>0){
+// if($('.tablaProveedores').length>0){
 //     $(document).ready(function(){
 //        $.ajax({
-//             url:"ajax/AjaxTablaClientes.php",
+//             url:"ajax/AjaxTablaProveedores.php",
           
        
 //             success:function(req){
@@ -28,16 +28,15 @@ $('.tablaClientes').DataTable({
 // }
 
 
-/* almacenar cliente */
 
-$('.formulario_guardar_cliente').submit(function(e){
+//Crear un proveedor
+
+$('.formulario_guardar_proveedor').submit(function(e){
     e.preventDefault();
     const nombre = $('#nombre').val();
-    const cedula = $('#cedula').val();
     const telefono = $('#telefono').val();
     const direccion = $('#direccion').val();
-    const correo = $('#correo').val();
-    const arreglo = [nombre,cedula,telefono,direccion];
+    const arreglo = [nombre,telefono,direccion];
 
     if($('.alerta').length>0){
         $('.alerta').remove();
@@ -47,17 +46,19 @@ $('.formulario_guardar_cliente').submit(function(e){
         $(this).append('<div class="alert alert-danger alerta text-center">Todos los Campos son Obligatorios</div>');
         return;
     }
+
+    console.log(nombre)
+    console.log(telefono)
+    console.log(direccion)
     const datos = new FormData();
     datos.append('nombre', nombre);
-    datos.append('cedula', cedula);
     datos.append('telefono', telefono);
     datos.append('direccion', direccion);
-    datos.append('correo', correo);
-  
+
 
     
     $.ajax({
-        url:"ajax/AjaxClientes.php",
+        url:"ajax/AjaxProveedores.php",
         method:"POST",
         data:datos,
         cache:false,
@@ -65,19 +66,16 @@ $('.formulario_guardar_cliente').submit(function(e){
         processData:false,
         dataType:"json",
         success:function(req){
+  
             console.log(req)
-           if(req == 'correo_no_valido'){
-                $('.formulario_guardar_cliente').append('<div class="alert alert-danger alerta text-center">Correo no valido</div>');
-                return;
-           }
             if(req=='no-validate'){
             
-                $('.formulario_guardar_cliente').append('<div class="alert alert-danger alerta text-center">datos no validos</div>');
+                $('.formulario_guardar_proveedor').append('<div class="alert alert-danger alerta text-center">datos no validos</div>');
                return;
             }
             if(req=='error'){
             
-                $('.formulario_guardar_cliente').append('<div class="alert alert-danger alerta text-center">hubo un error por favor intenet nuevamente</div>');
+                $('.formulario_guardar_proveedor').append('<div class="alert alert-danger alerta text-center">hubo un error por favor intenet nuevamente</div>');
                return;
             }
             if(req=='success'){
@@ -85,7 +83,7 @@ $('.formulario_guardar_cliente').submit(function(e){
                     $('.alerta').remove();
                 }
                 Swal.fire({
-                    title: 'Cliente Almacenado Correctamente',
+                    title: 'Proveedor Almacenado Correctamente',
                     type:'success',
                     icon:'success',
                     showCancelButton: false,
@@ -96,7 +94,7 @@ $('.formulario_guardar_cliente').submit(function(e){
             
                 }).then((result)=>{
                     if(result.value){
-                        window.location = "clientes";
+                        window.location = "proveedores";
                     }
                 })
             }
@@ -109,13 +107,14 @@ $('.formulario_guardar_cliente').submit(function(e){
   
 })
 
-//traeme los datos actulaes del cliente
-$(document).on('click', '.btnEditarCliente',function(){
-    const id_cliente = $(this).attr('idCliente');
+
+//traeme los datos actulaes del proveedor
+$(document).on('click', '.btnEditarProveedor',function(){
+    const id_proveedor = $(this).attr('idProveedor');
     const datos = new FormData();
-    datos.append('id_cliente',id_cliente);
+    datos.append('id_proveedor',id_proveedor);
     $.ajax({
-        url: "ajax/AjaxClientes.php",
+        url: "ajax/AjaxProveedores.php",
         method: "POST",
         data: datos,
         cache:false,
@@ -125,11 +124,9 @@ $(document).on('click', '.btnEditarCliente',function(){
         success:function(req){
             
             $('#editar_nombre').val(req['nombre'])
-            $('#editar_cedula').val(req['cedula'])
             $('#editar_telefono').val(req['telefono'])
             $('#editar_direccion').val(req['direccion'])
-            $('#editar_correo').val(req['correo'])
-            $('#id_editar_cliente').val(req['id']);
+            $('#id_editar_proveedor').val(req['id']);
         },
         error:function(error){
             console.log(error.responseText)
@@ -139,33 +136,29 @@ $(document).on('click', '.btnEditarCliente',function(){
 
 })
 
-//enviar elformulario editar
-$('.formulario_editar_cliente').submit(function(e){
+//editar Proveedor
+$('.formulario_editar_proveedor').submit(function(e){
     e.preventDefault();
 
     if($('.alert').length>0){
         $('.alert').remove();
     }
-    const id_editar_cliente = $('#id_editar_cliente').val();
+    const id_editar_proveedor = $('#id_editar_proveedor').val();
     const editar_nombre = $('#editar_nombre').val();
-    const editar_cedula = $('#editar_cedula').val();
     const editar_telefono = $('#editar_telefono').val();
     const editar_direccion = $('#editar_direccion').val();
-    const editar_correo = $('#editar_correo').val();
 
     const datos = new FormData();
-    datos.append('id_editar_cliente',id_editar_cliente);
+    datos.append('id_editar_proveedor',id_editar_proveedor);
     datos.append('editar_nombre',editar_nombre)
-    datos.append('editar_cedula',editar_cedula)
 
     datos.append('editar_telefono',editar_telefono)
     datos.append('editar_direccion',editar_direccion)
-    datos.append('editar_correo',editar_correo)
 
 
     
     $.ajax({
-        url: 'ajax/AjaxClientes.php',
+        url: 'ajax/AjaxProveedores.php',
         method:'POST',
         data:datos,
         cache:false,
@@ -174,10 +167,7 @@ $('.formulario_editar_cliente').submit(function(e){
         dataType:'json',
         success:function(req){
             console.log(req)
-            if(req == 'correo_no_valido'){
-                $('.formulario_editar_cliente').append('<div class="alert alert-danger alerta text-center">Correo no valido</div>');
-                return;
-           }
+            
             if(req=='no_validate'){
                
                 $('.formulario_editar_cliente').after('<div class="alert alert-danger text-center alerta">todos los campos son obligatorios y deben ser validos</div>')
@@ -196,7 +186,7 @@ $('.formulario_editar_cliente').submit(function(e){
             
                 }).then((result)=>{
                     if(result.value){
-                        window.location = "clientes";
+                        window.location = "proveedores";
                     }
                 })
             }else{
@@ -213,7 +203,7 @@ $('.formulario_editar_cliente').submit(function(e){
             
                 }).then((result)=>{
                     if(result.value){
-                        window.location = "clientes";
+                        window.location = "proveedores";
                     }
                 })
             }
@@ -225,39 +215,30 @@ $('.formulario_editar_cliente').submit(function(e){
     })
 })
 
-//eliminar CLiente
-
-$(document).on('click', '.btnEliminarCliente', function(){
+$(document).on('click', '.btnEliminarProveedor', function(){
     
-    const deuda_total = $(this).attr('deuda_cl')
-    if(deuda_total!=0){
-        console.log(deuda_total)
-        Swal.fire({
-        icon:'error',
-        title: 'El cliente no se puede Eliminar Saldo Pendiente',
-        text: 'Saldo Pendiente',
-    })}else{
 
-  
 
-   
+
    
     Swal.fire({
-        title:'Esta Seguro que Desea Eliminar este Cliente?',
+        title:'Esta Seguro que Desea Eliminar este Proveedor?',
         text: 'esta accion no se puede deshacer',
         head: 'esta acción no tiene',
         icon: 'warning',
         type: 'warning',
         showCancelButton:true,
         cancelButtonText:'Cancelar',
-        confirmButtonText: 'si, eliminar Cliente'
+        confirmButtonText: 'si, eliminar Proveedor'
     }).then((result)=>{
         if(result.value){
-            const id_eliminar_cliente = $(this).attr('idCliente');
+          
+            const id_eliminar_proveedor = $(this).attr('idProveedor');
+          
             const datos = new FormData();
-            datos.append('id_eliminar_cliente', id_eliminar_cliente);
+            datos.append('id_eliminar_proveedor', id_eliminar_proveedor);
             $.ajax({
-                url: 'ajax/AjaxClientes.php',
+                url: 'ajax/AjaxProveedores.php',
                 method:'POST',
                 data:datos,
                 cache:false,
@@ -265,7 +246,18 @@ $(document).on('click', '.btnEliminarCliente', function(){
                 processData:false,
                 dataType:'json',
                 success:function(req){
-                    
+                    console.log(req)
+                    if(req == 'fk_unrestricted'){
+                     
+                        Swal.fire({
+                            icon:'error',
+                            title: 'Opps, hubo un error',
+                            html: 'Por Integridad de su información no puede eliminar este proveedor porque hay uno o mas productos al que se le ha asignado este proveedor.'+
+                            '<br>Una opcion seria editar el proveedor en el (los) producto (s) y la otra sería eliminar el (los) producto (productos).'+
+                            '<br>Cuando complete una de estas dos acciones podra eliminar el proveedor'
+                        })
+                    }
+             
                     if(req=='error'){
                         Swal.fire({
                             icon:'error',
@@ -277,14 +269,14 @@ $(document).on('click', '.btnEliminarCliente', function(){
                     if(req=='no_permitido'){
                         Swal.fire({
                             icon:'error',
-                            title: 'El cliente no se puede Eliminar Saldo Pendiente',
+                            title: 'El Proveedor no se puede Eliminar Saldo Pendiente',
                             text: 'Saldo Pendiente',
                         })
                       
                     }
                     if(req=='success'){
                         Swal.fire({
-                            title: 'Cliente Eliminado Correctamente',
+                            title: 'Proveedor Eliminado Correctamente',
                             type:'success',
                             icon:'success',
                             showCancelButton: false,
@@ -295,7 +287,7 @@ $(document).on('click', '.btnEliminarCliente', function(){
                     
                         }).then((result)=>{
                             if(result.value){
-                                window.location = "clientes";
+                                window.location = "proveedores";
                             }
                         })
                     }
@@ -307,5 +299,8 @@ $(document).on('click', '.btnEliminarCliente', function(){
             })
         }
     })
-}
+
 })
+
+
+}

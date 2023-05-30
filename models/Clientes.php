@@ -20,10 +20,13 @@
             }
         }
         public function agregarCliente($tabla, $datos){
-            $stmt =  Conexion::conectarDB()->prepare("INSERT INTO   $tabla(nombre, telefono, direccion) VALUES (:nombre,  :telefono, :direccion)");
+
+            $stmt =  Conexion::conectarDB()->prepare("INSERT INTO   $tabla (nombre,cedula, telefono, direccion, correo) VALUES (:nombre, :cedula,  :telefono, :direccion, :correo)");
             $stmt->bindParam(":nombre", $datos['nombre'],  PDO::PARAM_STR);
+            $stmt->bindParam(":cedula", $datos['cedula'],  PDO::PARAM_STR);
             $stmt->bindParam(":telefono", $datos['telefono'],  PDO::PARAM_STR);
             $stmt->bindParam(":direccion", $datos['direccion'],  PDO::PARAM_STR);
+            $stmt->bindParam(":correo", $datos['correo'],  PDO::PARAM_STR);
            
             if($stmt->execute()){
                 return 'success';
@@ -33,10 +36,12 @@
         }
         public function editarCliente($tabla, $datos){
     
-            $stmt =  Conexion::conectarDB()->prepare("UPDATE $tabla  SET nombre=:nombre, telefono=:telefono, direccion=:direccion WHERE id=:id");
+            $stmt =  Conexion::conectarDB()->prepare("UPDATE $tabla  SET nombre=:nombre, cedula=:cedula, telefono=:telefono, direccion=:direccion , correo=:correo WHERE id=:id");
             $stmt->bindParam(":nombre", $datos['nombre'],  PDO::PARAM_STR);
+            $stmt->bindParam(":cedula", $datos['cedula'],  PDO::PARAM_STR);
             $stmt->bindParam(":telefono", $datos['telefono'],  PDO::PARAM_STR);
             $stmt->bindParam(":direccion", $datos['direccion'],  PDO::PARAM_STR);
+            $stmt->bindParam(":correo", $datos['correo'],  PDO::PARAM_STR);
             $stmt->bindParam(":id", $datos['id'],  PDO::PARAM_STR);
             if($stmt->execute()){
                 return 'success';
