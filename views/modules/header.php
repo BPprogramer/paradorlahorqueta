@@ -2,12 +2,12 @@
     <a href="inicio" class="logo">
         <span class="logo-mini">
             <!-- <img src="views/img/plantilla/icono-blanco.png" class="img-responsive" style="padding:10px" alt=""> -->
-            <h1 style="margin:10px 0px; font-size:28px; color:#f0ad4e;  font-weight: bold">FA</h1>
+            <h1 style="margin:10px 0px; font-size:28px; color:#f0ad4e;  font-weight: bold">H</h1>
         </span>
 
 
         <span class="logo-lg">
-            <h1 style="margin:10px 0px; font-size:28px; color:#f0ad4e;  font-weight: bold">FERROAGRO</h1>
+            <h1 style="margin:10px 0px; font-size:28px; color:#f0ad4e;  font-weight: bold">LA HORQUETA</h1>
             <!-- <img src="views/img/plantilla/logo.png" class="img-responsive" style="padding:10px 0" alt=""> -->
         </span> 
     </a>
