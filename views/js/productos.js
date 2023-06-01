@@ -87,22 +87,22 @@ function mostrarInfoProducto(info_producto){
 
 
 
-$('#btnAgregarProducto').click(function(){
-     $.ajax({
-        url: "ajax/AjaxProveedores.php",
-        dataType:"json",
-        success:function(req){
+// $('#btnAgregarProducto').click(function(){
+//      $.ajax({
+//         url: "ajax/AjaxProveedores.php",
+//         dataType:"json",
+//         success:function(req){
             
-            $('.selectProveedores').append(`<option value="" selected disabled>--seleccione el proveedor--</option>`)
-            req.forEach(proveedor => {
-                $('.selectProveedores').append(`<option value="${proveedor['id']}">${proveedor['nombre']}</option>`)
-            });
-        },
-        error:function(error){
-            console.log(error.responseText)
-        }
-     })
-})
+//             $('.selectProveedores').append(`<option value="" selected disabled>--seleccione el proveedor--</option>`)
+//             req.forEach(proveedor => {
+//                 $('.selectProveedores').append(`<option value="${proveedor['id']}">${proveedor['nombre']}</option>`)
+//             });
+//         },
+//         error:function(error){
+//             console.log(error.responseText)
+//         }
+//      })
+// })
 
 
   
@@ -204,10 +204,9 @@ $('.form_agregar_producto').submit(function(e){
     const descripcion = $('#descripcion').val();
     const stock = $('#stock').val();
 
-    const stock_minimo = $('#stock_minimo').val();
-    const stock_maximo = $('#stock_maximo').val();
-    console.log(stock_minimo)
-    console.log(stock_maximo)
+    // const stock_minimo = $('#stock_minimo').val();
+    // const stock_maximo = $('#stock_maximo').val();
+ 
 
     const precio_compra = $('#precio_compra').val();
     const precio_venta = $('#precio_venta').val();
@@ -221,8 +220,8 @@ $('.form_agregar_producto').submit(function(e){
     datos.append('codigo',codigo)
     datos.append('descripcion',descripcion)
     datos.append('stock',stock)
-    datos.append('stock_minimo',stock_minimo)
-    datos.append('stock_maximo',stock_maximo)
+    // datos.append('stock_minimo',stock_minimo)
+    // datos.append('stock_maximo',stock_maximo)
     datos.append('precio_compra',precio_compra)
     datos.append('precio_venta',precio_venta)
     datos.append('imagen',imagen)

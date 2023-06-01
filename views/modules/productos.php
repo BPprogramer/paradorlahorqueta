@@ -83,7 +83,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                  <!--       <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
                                 <select name="id_proveedor" class="form-control input-lg selectProveedores" id="idProveedor">
@@ -92,7 +92,7 @@
                                 </select>
                             </div>
                         </div>
-                       
+                        -->
                     
                         <div class="form-group">
                             <div class="input-group">
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <!-- stock minimo y maximo -->
-                        <div class="form-group row">
+                      <!--   <div class="form-group row">
                             <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-caret-down"></i></span>
@@ -114,7 +114,7 @@
                                     <input type="number" class="form-control input-lg" name="stock_maximo" id="stock_maximo" placeholder="stock máximo" min="0" >
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                        
                         <!-- PRecio de compar y venta -->
                         <div class="form-group row">
@@ -221,14 +221,14 @@
                                 <input type="text" class="form-control input-lg" name="editar_descripcion" id="editar_descripcion" placeholder="Ingresar descripcion Producto" >
                             </div>
                         </div>
-                        <div class="form-group">
+                       <!--  <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
                                 <select name="id_proveedor" class="form-control input-lg selectProveedores" id="editar_id_proveedor">
                                     <option value="" disabled>--seleccione el proveedor--</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                     
                         <div class="form-group">
                             <div class="input-group">
@@ -238,7 +238,7 @@
                         </div>
 
                         <!-- stock minimo y maximo -->
-                        <div class="form-group row">
+                     <!--    <div class="form-group row">
                                 <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-caret-down"></i></span>
@@ -251,7 +251,7 @@
                                         <input type="number" class="form-control input-lg" name="editar_stock_maximo" id="editar_stock_maximo" placeholder="stock máximo" min="0" >
                                     </div>
                                 </div>
-                        </div>
+                        </div> -->
 
                         <!-- precios de compra venta y porcentaje -->
                         <div class="form-group row">

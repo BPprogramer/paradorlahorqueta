@@ -23,20 +23,20 @@
            $precio_compra = $_POST['precio_compra'];
            $precio_venta = $_POST['precio_venta'];
            $stock = $_POST['stock'];
-           $stock_minimo = $_POST['stock_minimo'];
-           $stock_maximo = $_POST['stock_maximo'];
+        //    $stock_minimo = $_POST['stock_minimo'];
+        //    $stock_maximo = $_POST['stock_maximo'];
             // $imagen = $_FILES;
            $imagen = "views/img/productos/default/anonymous.png";
            $parttern_1 = '/^[0-9.]+$/';
            $parttern_2 = '/^[-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/';
 
-           $id_proveedor = filter_var($id_proveedor, FILTER_VALIDATE_INT);
+        //    $id_proveedor = filter_var($id_proveedor, FILTER_VALIDATE_INT);
            
-           if(!$id_proveedor){
-                return 'datos_invalidos';
-           }
+        //    if(!$id_proveedor){
+        //         return 'datos_invalidos';
+        //    }
         
-           if(preg_match($parttern_2, $descripcion) && preg_match($parttern_1, $codigo) && preg_match($parttern_1, $stock) && preg_match($parttern_1, $stock_minimo) && preg_match($parttern_1, $stock_maximo) && preg_match($parttern_1, $precio_compra) && preg_match($parttern_1, $precio_venta)){
+           if(preg_match($parttern_2, $descripcion) && preg_match($parttern_1, $codigo) && preg_match($parttern_1, $stock) && preg_match($parttern_1, $precio_compra) && preg_match($parttern_1, $precio_venta)){
                
                 if(isset($_FILES['imagen'])){
                     $info_img = getimagesize($_FILES['imagen']["tmp_name"]);
@@ -87,7 +87,7 @@
                 }
             
                 $tabla = "productos";
-                $datos = array("id_categoria"=>$id_categoria,'id_proveedor'=>$id_proveedor, "codigo"=>$codigo, "descripcion"=>$descripcion, "stock"=>$stock,"stock_minimo"=>$stock_minimo,"stock_maximo"=>$stock_maximo ,"precio_compra"=>$precio_compra, "precio_venta"=>$precio_venta, "imagen"=>$imagen);
+                $datos = array("id_categoria"=>$id_categoria,  "codigo"=>$codigo, "descripcion"=>$descripcion, "stock"=>$stock, "precio_compra"=>$precio_compra, "precio_venta"=>$precio_venta, "imagen"=>$imagen);
                 $producto = new Productos();
                 return $producto->registrarProducto($tabla, $datos);
 

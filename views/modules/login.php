@@ -2,7 +2,7 @@
 <div class="login-box register-page">
     <div class="" style="">
       
-       <img src="views/img/plantilla/baner_gildardo.PNG" class="img-responsive" style="width:100%" alt="">
+       <img src="views/img/plantilla/horqueta.png" class="img-responsive" style="width:100%" alt="">
     </div>
 
     <div class="login-box-body">
