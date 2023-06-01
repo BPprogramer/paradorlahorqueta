@@ -34,7 +34,9 @@
 
         public function registrarProducto($tabla, $datos){
           
-            $stmt = Conexion::conectarDB()->prepare("INSERT INTO $tabla (id_categoria,  codigo, descripcion, imagen, stock, precio_compra, precio_venta) VALUES (:id_categoria, :codigo, :descripcion, :imagen, :stock, :precio_compra, :precio_venta)");
+            $stmt = Conexion::conectarDB()->prepare("INSERT INTO $tabla (id_categoria,  codigo, descripcion, 
+            imagen, stock, precio_compra, precio_venta) VALUES (:id_categoria, :codigo, :descripcion, :imagen, :stock, 
+            :precio_compra, :precio_venta)");
             $stmt->bindParam(":id_categoria", $datos['id_categoria'], PDO::PARAM_STR);
             // $stmt->bindParam(":id_proveedor", $datos['id_proveedor'], PDO::PARAM_STR);
             $stmt->bindParam(":codigo", $datos['codigo'], PDO::PARAM_STR);
@@ -57,13 +59,15 @@
         }
         public function editarProducto($tabla, $columna, $datos){
          
-            $stmt = Conexion::conectarDB()->prepare("UPDATE $tabla SET id_proveedor=:id_proveedor, descripcion =:descripcion, imagen =:imagen, stock=:stock, stock_minimo=:stock_minimo, stock_maximo = :stock_maximo, precio_compra=:precio_compra, precio_venta = :precio_venta WHERE id= :id");
-            $stmt->bindParam(":id_proveedor", $datos['id_proveedor'],  PDO::PARAM_STR);
+            $stmt = Conexion::conectarDB()->prepare("UPDATE $tabla SET  descripcion =:descripcion, 
+            imagen =:imagen, stock=:stock,   precio_compra=:precio_compra, 
+            precio_venta = :precio_venta WHERE id= :id");
+            // $stmt->bindParam(":id_proveedor", $datos['id_proveedor'],  PDO::PARAM_STR);
             $stmt->bindParam(":descripcion", $datos['descripcion'],  PDO::PARAM_STR);
             $stmt->bindParam(":imagen", $datos['imagen'], PDO::PARAM_STR);
             $stmt->bindParam(":stock", $datos['stock'],  PDO::PARAM_STR);
-            $stmt->bindParam(":stock_minimo", $datos['stock_minimo'],  PDO::PARAM_STR);
-            $stmt->bindParam(":stock_maximo", $datos['stock_maximo'],  PDO::PARAM_STR);
+           /*  $stmt->bindParam(":stock_minimo", $datos['stock_minimo'],  PDO::PARAM_STR);
+            $stmt->bindParam(":stock_maximo", $datos['stock_maximo'],  PDO::PARAM_STR); */
             $stmt->bindParam(":precio_compra", $datos['precio_compra'],  PDO::PARAM_STR);
             $stmt->bindParam(":precio_venta", $datos['precio_venta'],  PDO::PARAM_STR);
             $stmt->bindParam(":id", $datos['id'],  PDO::PARAM_STR);

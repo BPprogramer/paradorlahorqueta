@@ -30,7 +30,6 @@
                             <th>#</th>
                             <th>Codigo</th>
                             <th>Imagen</th>
-                            
                             <th>Descripcion</th>
                             <th>Categoría</th>
                             <th>Stock</th>

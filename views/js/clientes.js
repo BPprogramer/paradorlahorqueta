@@ -33,11 +33,11 @@ $('.tablaClientes').DataTable({
 $('.formulario_guardar_cliente').submit(function(e){
     e.preventDefault();
     const nombre = $('#nombre').val();
-    const cedula = $('#cedula').val();
+    // const cedula = $('#cedula').val();
     const telefono = $('#telefono').val();
     const direccion = $('#direccion').val();
-    const correo = $('#correo').val();
-    const arreglo = [nombre,cedula,telefono,direccion];
+    // const correo = $('#correo').val();
+    const arreglo = [nombre,telefono,direccion];
 
     if($('.alerta').length>0){
         $('.alerta').remove();
@@ -49,10 +49,10 @@ $('.formulario_guardar_cliente').submit(function(e){
     }
     const datos = new FormData();
     datos.append('nombre', nombre);
-    datos.append('cedula', cedula);
+    // datos.append('cedula', cedula);
     datos.append('telefono', telefono);
     datos.append('direccion', direccion);
-    datos.append('correo', correo);
+    // datos.append('correo', correo);
   
 
     
@@ -66,10 +66,10 @@ $('.formulario_guardar_cliente').submit(function(e){
         dataType:"json",
         success:function(req){
             console.log(req)
-           if(req == 'correo_no_valido'){
-                $('.formulario_guardar_cliente').append('<div class="alert alert-danger alerta text-center">Correo no valido</div>');
-                return;
-           }
+        //    if(req == 'correo_no_valido'){
+        //         $('.formulario_guardar_cliente').append('<div class="alert alert-danger alerta text-center">Correo no valido</div>');
+        //         return;
+        //    }
             if(req=='no-validate'){
             
                 $('.formulario_guardar_cliente').append('<div class="alert alert-danger alerta text-center">datos no validos</div>');
@@ -125,10 +125,10 @@ $(document).on('click', '.btnEditarCliente',function(){
         success:function(req){
             
             $('#editar_nombre').val(req['nombre'])
-            $('#editar_cedula').val(req['cedula'])
+           /*  $('#editar_cedula').val(req['cedula']) */
             $('#editar_telefono').val(req['telefono'])
             $('#editar_direccion').val(req['direccion'])
-            $('#editar_correo').val(req['correo'])
+           /*  $('#editar_correo').val(req['correo']) */
             $('#id_editar_cliente').val(req['id']);
         },
         error:function(error){
@@ -148,19 +148,19 @@ $('.formulario_editar_cliente').submit(function(e){
     }
     const id_editar_cliente = $('#id_editar_cliente').val();
     const editar_nombre = $('#editar_nombre').val();
-    const editar_cedula = $('#editar_cedula').val();
+   /*  const editar_cedula = $('#editar_cedula').val(); */
     const editar_telefono = $('#editar_telefono').val();
     const editar_direccion = $('#editar_direccion').val();
-    const editar_correo = $('#editar_correo').val();
+   /*  const editar_correo = $('#editar_correo').val(); */
 
     const datos = new FormData();
     datos.append('id_editar_cliente',id_editar_cliente);
     datos.append('editar_nombre',editar_nombre)
-    datos.append('editar_cedula',editar_cedula)
+    /* datos.append('editar_cedula',editar_cedula) */
 
     datos.append('editar_telefono',editar_telefono)
     datos.append('editar_direccion',editar_direccion)
-    datos.append('editar_correo',editar_correo)
+   /*  datos.append('editar_correo',editar_correo) */
 
 
     
@@ -174,10 +174,10 @@ $('.formulario_editar_cliente').submit(function(e){
         dataType:'json',
         success:function(req){
             console.log(req)
-            if(req == 'correo_no_valido'){
+          /*   if(req == 'correo_no_valido'){
                 $('.formulario_editar_cliente').append('<div class="alert alert-danger alerta text-center">Correo no valido</div>');
                 return;
-           }
+           } */
             if(req=='no_validate'){
                
                 $('.formulario_editar_cliente').after('<div class="alert alert-danger text-center alerta">todos los campos son obligatorios y deben ser validos</div>')

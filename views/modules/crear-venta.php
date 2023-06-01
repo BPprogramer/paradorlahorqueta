@@ -145,7 +145,7 @@
                                 </div>
                                 <!-- agregar Cliente para fiados -->
                                 <!-- agregar clientes a la venta -->
-                                <div class="row contenedor_credito" style="margin-top:30px">
+                                <div class="row contenedor_credito hidden" style="margin-top:30px">
                                     <div class="col-xs-12 col-sm-8 col-md-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-users"></i></span>
@@ -165,7 +165,7 @@
                                 </div>
 
                                  <!-- Info Cliente -->
-                                 <div class="info_cliente">
+                             <!--     <div class="info_cliente">
                                     <div class="form-group"style="margin-top:10px">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
@@ -201,7 +201,7 @@
                                         </div>
                                     </div>
                               
-                                 </div>
+                                 </div> -->
                                 
                             </div>
                             <div id="alerta"></div>

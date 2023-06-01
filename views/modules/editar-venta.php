@@ -166,9 +166,9 @@
                                             <div class=""><!-- metod de pago -->
                                                 <select name="metodo_pago" id="metodo_pago"  class="form-control">
                                                     <option  disabled>Seleccione Metodo de pago</option>
-                                                    <option value="efectivo" <?php echo $venta['metodo_pago']=='efectivo'?'selected':''?>>De Contado</option>
+                                                    <option value="efectivo">De Contado</option>
                                                     
-                                                    <option value="credito" <?php echo  $venta['metodo_pago']=='credito'?'selected':''?>>Crédito</option>
+                                                    <option value="credito" >Crédito</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -189,7 +189,7 @@
                                             </div>
                                         </div> -->
                                         <div class="col-xs-12" style="margin-top:10px">
-                                            <?php if($venta['metodo_pago']=='efectivo'){?>
+                                           
                                                 <div class="contenedor_metodo_pago row"><!-- auiinsertamos desde jquery egu nel metodo seleccionado -->
                                                     
                                                     <div class="col-xs-6 contenedor_valor_efectivo" style="">
@@ -206,21 +206,21 @@
                                                     </div>
 
                                                 </div>
-                                            <?php }else{?>
-                                                <div class="col-xs-6 contenedor_valor_abono" style="">
+                                        
+                                              <!--   <div class="col-xs-6 contenedor_valor_abono" style="">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                                                        <input type="text"  value="<?php echo $venta['total']-$venta['deuda']?>" class="form-control valor_abono" placeholder="abono" style="font-size:20px">
+                                                        <input type="text"  value="" class="form-control valor_abono" placeholder="abono" style="font-size:20px">
                                                     </div>
                                                 
                                                 </div>
                                                 <div class="col-xs-6 contenedor_valor_deuda" style="padding-left:0px ">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                                                        <input type="text" value="<?php echo $venta['total']?>" class="form-control valor_deuda" placeholder="deuda" readonly style="font-size:20px">
+                                                        <input type="text" value="" class="form-control valor_deuda" placeholder="deuda" readonly style="font-size:20px">
                                                     </div>
-                                                </div>
-                                            <?php }?>
+                                                </div> -->
+                                        
                                         </div>
                                         
                                         <input type="hidden" name="lista_metodo_pago" id="lista_metodo_pago"> <!-- aqui almacenamos el metodo de pago -->
@@ -248,7 +248,7 @@
                                     </div> -->
 
                                     <!-- agregar cliente a la venta -->
-                                <div class="row contenedor_credito" style="margin-top:30px">
+                                <div class="row contenedor_credito hidden" style="margin-top:30px">
                                     <div class="col-xs-12 col-sm-8 col-md-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-users"></i></span>
@@ -258,7 +258,7 @@
                                             
                                             </select>
                                         </div>
-                                        <input hidden id="id_cliente_venta" id_cliente_venta="<?php echo $venta['id_cliente']??''?>">
+                                      <!--   <input hidden id="id_cliente_venta" id_cliente_venta=""> -->
                                     </div> 
                                     <div class="col-xs-12 col-sm-4 col-md-12">
                                         <div class="input-group pull-right">
@@ -269,50 +269,12 @@
                                     </div>
                                 </div>
 
-                                       <!-- Info Cliente -->
-                                <div class="info_cliente">
-                                    <div class="form-group"style="margin-top:10px">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                                                <input value="<?php echo $venta['nombre_cliente']?>" type="text" class="form-control input-lg" name="nombre_cliente" id="nombre_cliente" placeholder="Nombre del Cliente"  <?php echo $venta['metodo_pago']=='credito'?'readonly':''?>>
-                                            </div>
-                                    </div>
-                                    <div class="form-group row" >
-                                        <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fas fa-file-alt"></i></span>
-                                                <input  value="<?php echo $venta['cedula_cliente']?>" type="text" class="form-control input-lg" name="cedula_cliente" id="cedula_cliente" placeholder="Cédula" min="0" <?php echo $venta['metodo_pago']=='credito'?'readonly':''?> >
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fas fa-phone"></i></span>
-                                                <input  value="<?php echo $venta['telefono_cliente']?>" type="tel" class="form-control input-lg" name="telefono_cliente" id="telefono_cliente" placeholder="Teléfono" min="0" <?php echo $venta['metodo_pago']=='credito'?'readonly':''?>>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row" >
-                                        <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-                                                <input  value="<?php echo $venta['direccion']?>" type="text" class="form-control input-lg" name="direccion_cliente" id="direccion_cliente" placeholder="Dirección" <?php echo $venta['metodo_pago']=='credito'?'readonly':''?>>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 mb-2" style="margin-bottom: 10px;">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-                                                <input  value="<?php echo $venta['correo']?>" type="email" class="form-control input-lg" name="correo_cliente" id="correo_cliente" placeholder="Correo"  <?php echo $venta['metodo_pago']=='credito'?'readonly':''?>>
-                                            </div>
-                                        </div>
-                                    </div>
-                              
-                                 </div>
-                                
+                           
                               
                             </div>
                             <div id="alerta"></div>
                             <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary pull-right">guardar Cambios</button>
+                                    <button type="submit" class="btn btn-primary pull-right btn_crear_venta">guardar Cambios</button>
                                     <input type="hidden" id="id_venta_editar" value="<?php echo $venta['id'] ?>">
                             </div>
                         </form>

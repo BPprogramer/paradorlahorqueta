@@ -15,14 +15,14 @@ class imprimirFactura{
     public $neto;
     public $impuesto;
     public $total;
-    public $cliente;
+   // public $cliente;
     public $vendedor;
     public $total_pagar;
-    public $nombre_cliente;
-    public $cedula_cliente;
-    public $telefono_cliente;
-    public $direccion_cliente;
-    public $correo_cliente;
+    // public $nombre_cliente;
+    // public $cedula_cliente;
+    // public $telefono_cliente;
+    // public $direccion_cliente;
+    // public $correo_cliente;
     public $abono;
     
   
@@ -35,11 +35,11 @@ class imprimirFactura{
         $this->deuda = number_format($venta['deuda'],2);
         $this->abono = number_format($venta['total']-$venta['deuda'],2);
         $this->total_pagar = number_format($venta['total'],2);
-        $this->nombre_cliente = $venta['nombre_cliente'];
-        $this->cedula_cliente = $venta['cedula_cliente'];
-        $this->telefono_cliente = $venta['telefono_cliente'];
-        $this->correo_cliente = $venta['correo'];
-        $this->direccion_cliente = $venta['direccion'];
+        // $this->nombre_cliente = $venta['nombre_cliente'];
+        // $this->cedula_cliente = $venta['cedula_cliente'];
+        // $this->telefono_cliente = $venta['telefono_cliente'];
+        // $this->correo_cliente = $venta['correo'];
+        // $this->direccion_cliente = $venta['direccion'];
        
 
         $this->vendedor = $venta['nombre_vendedor'];
@@ -86,40 +86,7 @@ class imprimirFactura{
             
             </table>
             
-            <h3> Cliente</h3>
-            <br>
-            <table style="font-size:10px; padding:5px 10px">
-                <tr>
-                    <td style="border:1px solid #666; background-color:white; width:270px">
-                        Nombre:   <strong>$this->nombre_cliente</strong>
-                    </td>
-                    <td style="border:1px solid #666; background-color:white; width:270px">
-                       Cédula:   <strong>$this->cedula_cliente</strong>
-                    </td>
-                  
-                
-                </tr>
-            
-            </table>
-
-            <table style="font-size:10px; padding:5px 10px">
-                <tr>
-                    <td style="border:1px solid #666; background-color:white; width:270px">
-                        Telefono:   <strong>$this->telefono_cliente</strong>
-                    </td>
-                    <td style="border:1px solid #666; background-color:white; width:270px">
-                        Correo:   <strong>$this->correo_cliente</strong>
-                    </td>
-                </tr>
-            </table>
-            <table style="font-size:10px; padding:5px 10px">
-                <tr>
-                    <td style="border:1px solid #666; background-color:white; width:270px">
-                        Dirección:   <strong>$this->direccion_cliente</strong>
-                    </td>
-                    
-                </tr>
-            </table>
+          
 
           
            

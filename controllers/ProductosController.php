@@ -105,16 +105,16 @@
             if(!$id){
                 return 'id_invalido';
             }
-            $id_proveedor =$_POST['editar_id_proveedor'];
-            $id_proveedor = filter_var($id_proveedor, FILTER_VALIDATE_INT);
+            // $id_proveedor =$_POST['editar_id_proveedor'];
+            // $id_proveedor = filter_var($id_proveedor, FILTER_VALIDATE_INT);
            
-            if(!$id_proveedor){
-                 return 'datos_no_validos';
-            }
+            // if(!$id_proveedor){
+            //      return 'datos_no_validos';
+            // }
             $descripcion = $_POST['editar_descripcion'];
             $stock = $_POST['editar_stock'];
-            $stock_minimo = $_POST['editar_stock_minimo'];
-            $stock_maximo = $_POST['editar_stock_maximo'];
+            // $stock_minimo = $_POST['editar_stock_minimo'];
+            // $stock_maximo = $_POST['editar_stock_maximo'];
             $precio_compra = $_POST['editar_precio_compra'];
             $precio_venta = $_POST['editar_precio_venta'];
 
@@ -122,7 +122,7 @@
             $parttern_2 = '/^[-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/';
 
            
-            if(preg_match($parttern_2, $descripcion) &&  preg_match($parttern_1, $stock) && preg_match($parttern_1, $stock_minimo) && preg_match($parttern_1, $stock_maximo) && preg_match($parttern_1, $precio_compra) && preg_match($parttern_1, $precio_venta)){
+            if(preg_match($parttern_2, $descripcion) &&  preg_match($parttern_1, $stock)  &&  preg_match($parttern_1, $precio_compra) && preg_match($parttern_1, $precio_venta)){
                 $tabla = 'productos';
                 $columna = 'id';
               
@@ -192,7 +192,7 @@
                 //fin de verificar
                 
 
-                $datos = array('id'=>$id, 'id_proveedor'=>$id_proveedor, 'descripcion'=>$descripcion, 'imagen'=>$imagen, 'stock'=>$stock,'stock_minimo'=>$stock_minimo, 'stock_maximo'=>$stock_maximo, 'precio_compra'=>$precio_compra, 'precio_venta'=>$precio_venta);
+                $datos = array('id'=>$id,  'descripcion'=>$descripcion, 'imagen'=>$imagen, 'stock'=>$stock,  'precio_compra'=>$precio_compra, 'precio_venta'=>$precio_venta);
                 $producto = new Productos();
                 return $producto->editarProducto($tabla,$columna,  $datos);
             }else{

@@ -58,14 +58,14 @@
 						<span>Clientes</span>
 					</a>
 				</li>
-				<?php if($_SESSION['perfil']=='administrador'){?>
-					<li>
+				<?php //if($_SESSION['perfil']=='administrador'){?>
+				<!-- 	<li>
 						<a href="proveedores">
 							<i class="fa-solid fa-truck-field"></i>
 							<span>Proveedores</span>
 						</a>
-					</li>
-				<?php }?>
+					</li> -->
+				<?php //}?>
 				
 				<li class="treeview">
 					<a href="#">
@@ -91,7 +91,7 @@
 							</a>
 						</li>
 			<?php }?>
-				<?php if($_SESSION['perfil']=='administrador'){?>
+				<?php if($_SESSION['perfil']=='administrador' || $_SESSION['perfil']=='vendedor' ){?>
 					<li>
 						<a href="reporte-ventas">
 							<i class="fa fa-circle-o"></i>

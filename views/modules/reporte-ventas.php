@@ -1,5 +1,5 @@
 <?php if($_SESSION['perfil']=='vendedor'){?>
-    <script>window.location='inicio'</script>
+ <script>//window.location='inicio'</script>
 <?php }?> 
 <div class="content-wrapper">
    

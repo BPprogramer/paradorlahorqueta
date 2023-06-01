@@ -11,7 +11,7 @@
 
             $productos = ProductosController::consultarProductos(null, null);
         
-            return;
+         
             $i=0;
      
             
@@ -22,16 +22,16 @@
                     foreach($productos as $key=>$producto){
                         $i++;
                         $imagen = "<img class='img-thumbmail' style='width:40px' src='".$producto['imagen']."'>";
-                       /*  $stock = "<button class='btn btn-secondary'>".$producto['stock']."</button>";
-                        if($producto['stock']<20){
+                        $stock = "<button class='btn btn-success'>".$producto['stock']."</button>";
+                        if($producto['stock']<50){
                             $stock = "<button class='btn btn-danger'>".$producto['stock']."</button>";
-                        } */
+                        } 
                         
                         
                       
                  
                         $precio_compra = "<button style='font-size:2rem' class='btn'>$".number_format($producto['precio_compra'])."</button>";
-                        $precio_venta = "<button style='font-size:2rem' class='btn'>$".number_format($producto['precio_venta'])."</button>";
+                        //$precio_venta = "<button style='font-size:2rem' class='btn'>$".number_format($producto['precio_venta'])."</button>";
                         
                     
                 
@@ -41,13 +41,14 @@
                         $botones .= "</div>";
                         $datoJson.= '[
                                 "'.$i.'",
-                                "'.$producto['codigo'].'",
+                              
                                 "'.$imagen.'",
+                             
                                 "'.$producto['descripcion'].'",
-                                "'.$producto['categoria'].'",
-                                "'.$producto['stock'].'",
                                 "'.$precio_compra.'",
-                                "'.$precio_venta.'",
+                                "'.$stock.'",
+                              
+                               
                                 
                                 "'.$botones.'"
                         ]';

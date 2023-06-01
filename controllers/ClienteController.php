@@ -13,35 +13,35 @@
         }
         public static function agregarCliente(){
             $nombre = $_POST['nombre'];
-            $cedula = $_POST['cedula'];
+            // $cedula = $_POST['cedula'];
             $telefono = $_POST['telefono'];
             $direccion = $_POST['direccion']??'';
-            $correo = $_POST['correo']??'';
+            // $correo = $_POST['correo']??'';
 
             $parttern_2 = '/^[-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/';
             $parttern_telefono = '/^[()\-0-9 ]+$/';
             $parttern_direccion = '/^[#\.\,\-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/';
-            $parttern_cedula = "/^\d{1,10}$/";
-            $parttern_correo = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+            // $parttern_cedula = "/^\d{1,10}$/";
+            // $parttern_correo = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
             
             
 
             if(preg_match($parttern_2,$nombre ) && 
                 preg_match( $parttern_telefono,$telefono)&&
-                preg_match( $parttern_cedula,$cedula) &&
+            
                 preg_match( $parttern_direccion,$direccion) 
               
               ){
 
                
-                    if($correo != ''){
-                        if(!(preg_match( $parttern_correo,$correo))){
-                            return 'correo_no_valido';
-                        }
-                    }
+                    // if($correo != ''){
+                    //     if(!(preg_match( $parttern_correo,$correo))){
+                    //         return 'correo_no_valido';
+                    //     }
+                    // }
                     
                     $tabla = 'clientes';
-                    $datos = array('nombre'=>$nombre,'cedula'=>$cedula, 'telefono'=>$telefono, 'direccion'=>$direccion,'correo'=>$correo);
+                    $datos = array('nombre'=>$nombre, 'telefono'=>$telefono, 'direccion'=>$direccion);
                     $cliente = new Clientes();
                    
                     return $cliente->agregarCliente($tabla, $datos);
@@ -61,31 +61,30 @@
             }
           
             $nombre = $_POST['editar_nombre'];
-            $cedula = $_POST['editar_cedula'];
+            // $cedula = $_POST['editar_cedula'];
             $telefono = $_POST['editar_telefono'];
             $direccion = $_POST['editar_direccion'];
-            $correo = $_POST['editar_correo'];
+            // $correo = $_POST['editar_correo'];
           
             $parttern_2 = '/^[-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/';
             $parttern_telefono = '/^[()\-0-9 ]+$/';
             $parttern_direccion = '/^[#\.\,\-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/';
-            $parttern_cedula = "/^\d{1,10}$/";
-            $parttern_correo = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+            // $parttern_cedula = "/^\d{1,10}$/";
+            // $parttern_correo = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
            
 
             if(preg_match($parttern_2, $nombre ) && 
                 preg_match( $parttern_telefono, $telefono) &&
-                preg_match( $parttern_cedula,$cedula) &&
                 preg_match( $parttern_direccion, $direccion)){
                     
-                    if($correo != ''){
+                   /*  if($correo != ''){
                         if(!(preg_match( $parttern_correo,$correo))){
                             return 'correo_no_valido';
                         }
-                    }
+                    } */
                     
                     $tabla = 'clientes';
-                    $datos = array('id'=>$id, 'nombre'=>$nombre, 'cedula'=>$cedula, 'telefono'=>$telefono, 'direccion'=>$direccion,'correo'=>$correo);
+                    $datos = array('id'=>$id, 'nombre'=>$nombre, 'telefono'=>$telefono, 'direccion'=>$direccion);
                     $cliente = new Clientes();
               
                     return $cliente->editarCliente($tabla, $datos);

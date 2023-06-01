@@ -24,11 +24,7 @@ let deuda=0;
 
 let total_precio_de_compra;
 
-let nombre_cliente = '';
-let cedula_cliente = '';
-let telefono_cliente = '';
-let direccion_cliente = '';
-let correo_cliente = '';
+
 
 
 $(document).ready(function(){
@@ -500,34 +496,21 @@ $('#metodo_pago').change(function(){
     $('.valor_deuda').val(0)
     $('.valor_abono').val(0)
     //dejar los datos del cliente vacios al cambiar el metodo de pago
-    $('#nombre_cliente').val('')
-    $('#cedula_cliente').val('')
-    $('#telefono_cliente').val('')
-    $('#direccion_cliente').val('')
-    $('#correo_cliente').val('')
+   
 
     //al cambiar el metodo de pago dejar en (seleccion un cliente) el selected
-    $('.clienteCrearVenta option:first').prop('selected',true);
+    //$('.clienteCrearVenta option:first').prop('selected',true);
 
     //quitar la propeidad de solo lectura al elegir un cliente
-    $('#correo_cliente').prop('readonly',false);
-    $('#nombre_cliente').prop('readonly',false)
-    $('#cedula_cliente').prop('readonly',false)
-    $('#telefono_cliente').prop('readonly',false)
-    $('#direccion_cliente').prop('readonly',false)
-    $('#correo_cliente').prop('readonly',false)
 
     //resetear variables
-    nombre_cliente = '';
-    cedula_cliente = '';
-    telefono_cliente = '';
-    direccion_cliente = '';
-    correo_cliente = '';
+ 
 
     //resetear valores 
     $('.contenedor_metodo_pago input').val('')
     
-    //$('.contenedor_credito').addClass('hidden')
+    $('.contenedor_credito').addClass('hidden')
+    console.log('asdf')
     const metodo = $(this).val();
     $('.info_cliente').removeClass('hidden');
     if(metodo == "efectivo"){
@@ -642,54 +625,55 @@ function metodoPago(){
 }
 
 //id del cliente al crear la venta
-$('.clienteCrearVenta').change(function(){
-    id_cliente = $(this).val();
-    const datos = new FormData();
-    datos.append('id_cliente',id_cliente);
-    $.ajax({
-        url:'ajax/AjaxClientes.php',
-        method:'POST',
-        data:datos,
-        contentType:false,
-        cache:false,
-        processData:false,
-        dataType:'json',
-        success:function(req){
-            //if($('.info_cliente '))
-            if($('.info_cliente').hasClass('hidden')){
-                $('.info_cliente').removeClass('hidden')  
-            }
+// $('.clienteCrearVenta').change(function(){
+//     id_cliente = $(this).val();
+//     const datos = new FormData();
+//     datos.append('id_cliente',id_cliente);
+//     $.ajax({
+//         url:'ajax/AjaxClientes.php',
+//         method:'POST',
+//         data:datos,
+//         contentType:false,
+//         cache:false,
+//         processData:false,
+//         dataType:'json',
+//         success:function(req){
+//             //if($('.info_cliente '))
+//             if($('.info_cliente').hasClass('hidden')){
+//                 $('.info_cliente').removeClass('hidden')  
+//             }
           
-            nombre_cliente = req['nombre'];
-            cedula_cliente = req['cedula'];
-            telefono_cliente = req['telefono'];
-            direccion_cliente = req['direccion'];
-            correo_cliente = req['correo'];
-            console.log(direccion_cliente)
-            $('#nombre_cliente').val(nombre_cliente)
-            $('#cedula_cliente').val(cedula_cliente)
-            $('#telefono_cliente').val(telefono_cliente)
-            $('#direccion_cliente').val(direccion_cliente)
-            $('#correo_cliente').val(correo_cliente)
-            $('#correo_cliente').prop('readonly',true);
-            $('#nombre_cliente').prop('readonly',true)
-            $('#cedula_cliente').prop('readonly',true)
-            $('#telefono_cliente').prop('readonly',true)
-            $('#direccion_cliente').prop('readonly',true)
-            $('#correo_cliente').prop('readonly',true)
+//             nombre_cliente = req['nombre'];
+//             cedula_cliente = req['cedula'];
+//             telefono_cliente = req['telefono'];
+//             direccion_cliente = req['direccion'];
+//             correo_cliente = req['correo'];
+//             console.log(direccion_cliente)
+//             $('#nombre_cliente').val(nombre_cliente)
+//             $('#cedula_cliente').val(cedula_cliente)
+//             $('#telefono_cliente').val(telefono_cliente)
+//             $('#direccion_cliente').val(direccion_cliente)
+//             $('#correo_cliente').val(correo_cliente)
+//             $('#correo_cliente').prop('readonly',true);
+//             $('#nombre_cliente').prop('readonly',true)
+//             $('#cedula_cliente').prop('readonly',true)
+//             $('#telefono_cliente').prop('readonly',true)
+//             $('#direccion_cliente').prop('readonly',true)
+//             $('#correo_cliente').prop('readonly',true)
           
-        },
-        error:function(error){
-            console.log(error.responseText)
-        }
-    })
-})
+//         },
+//         error:function(error){
+//             console.log(error.responseText)
+//         }
+//     })
+// })
 //id del cliente al editar la venta
 
 /* $(document).ready(function(){
     id_cliente = $('.clienteEditarVenta').val();
-}) */
-
+    console.log(id_cliente)
+})
+ */
 
 
 
@@ -789,11 +773,11 @@ function enviarDatos(){
     $('.btn_crear_venta').prop('disabled',true)
  
    //console.log(productos)
-   cedula_cliente = $('#cedula_cliente').val()
-   nombre_cliente = $('#nombre_cliente').val()
-   telefono_cliente = $('#telefono_cliente').val()
-   direccion_cliente = $('#direccion_cliente').val()
-   correo_cliente = $('#correo_cliente').val()
+//    cedula_cliente = $('#cedula_cliente').val()
+//    nombre_cliente = $('#nombre_cliente').val()
+//    telefono_cliente = $('#telefono_cliente').val()
+//    direccion_cliente = $('#direccion_cliente').val()
+//    correo_cliente = $('#correo_cliente').val()
     const datos = new FormData();
     datos.append('codigo',codigo)
     
@@ -803,17 +787,20 @@ function enviarDatos(){
     datos.append('total',total)
     datos.append('total_costo',total_precio_de_compra)
     datos.append('metodo_pago',metodo_pago)
-    datos.append('nombre_cliente',nombre_cliente)
-    datos.append('cedula_cliente',cedula_cliente)
-    datos.append('telefono_cliente',telefono_cliente)
-    datos.append('direccion_cliente',direccion_cliente)
-    datos.append('correo_cliente',correo_cliente)
+    // datos.append('nombre_cliente',nombre_cliente)
+    // datos.append('cedula_cliente',cedula_cliente)
+    // datos.append('telefono_cliente',telefono_cliente)
+    // datos.append('direccion_cliente',direccion_cliente)
+    // datos.append('correo_cliente',correo_cliente)
 
     if(metodo_pago == 'credito'){
         datos.append('id_cliente',id_cliente);
         datos.append('abono',abono)
         
+        
     }
+ 
+
     if(window.location.href.indexOf('crear-venta')!==-1){ //zonasoftware.online
         console.log('creando venta')
         const create = 'create';
@@ -843,7 +830,7 @@ function enviarDatos(){
                     }).then((result) => {
                       
                         if (result.isConfirmed) {
-                            window.location.href = 'administrar-ventas';
+                            window.location.href = 'crear-venta';
                            
                         } 
     
@@ -856,7 +843,8 @@ function enviarDatos(){
             }
     
         })
-    }else{ //editar venta
+    }else{
+        $('.btn_editar_venta').prop('disabled',true) //editar venta
     
         const id = $('#id_venta_editar').val()
         const update = 'update';

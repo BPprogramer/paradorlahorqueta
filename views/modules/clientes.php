@@ -24,10 +24,10 @@
                         <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Cédula</th>
+                         <!--    <th>Cédula</th> -->
                             <th>Célular</th>
                             <th>Dirección</th>
-                            <th>Correo</th>
+                           <!--  <th>Correo</th> -->
                             <th>Total Deuda</th>
                             <th>Boton de Acciones</th>
                         </tr>
@@ -55,12 +55,12 @@
                                 <input type="text" class="form-control input-lg" name="nombre" id="nombre" placeholder="ingresa Nombre del cliente">
                             </div>
                         </div> 
-                        <div class="form-group">
+                     <!--    <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <input type="text" class="form-control input-lg" name="cedula" id="cedula" placeholder="ingresa No de cédula del cliente">
                             </div>
-                        </div> 
+                        </div>  -->
                         
                       
                         <div class="form-group">
@@ -75,12 +75,12 @@
                                 <input type="text" class="form-control input-lg" name="direccion" id="direccion" placeholder="ingresa el direccion del cliente">
                             </div>
                         </div> 
-                        <div class="form-group">
+                      <!--   <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                 <input type="text" class="form-control input-lg" name="correo" id="correo" placeholder="ingresa el correo del cliente">
                             </div>
-                        </div> 
+                        </div>  -->
                    
                     </div>
                 </div>
@@ -110,12 +110,12 @@
                                 <input type="text" class="form-control input-lg" name="editar_nombre" id="editar_nombre" placeholder="ingresa Nombre del cliente">
                             </div>
                         </div> 
-                        <div class="form-group">
+                     <!--    <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <input type="text" class="form-control input-lg" name="editar_cedula" id="editar_cedula" placeholder="ingresa el No de cédula del cliente">
                             </div>
-                        </div> 
+                        </div>  -->
                       
                      
                         <div class="form-group">
@@ -130,12 +130,12 @@
                                 <input type="text" class="form-control input-lg" name="direccion" id="editar_direccion" placeholder="ingresa el direccion del cliente">
                             </div>
                         </div> 
-                        <div class="form-group">
+                      <!--   <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                 <input type="text" class="form-control input-lg" name="correo" id="editar_correo" placeholder="ingresa el correo del cliente">
                             </div>
-                        </div> 
+                        </div>  -->
                       
                     </div>
                 </div>

@@ -396,8 +396,7 @@ $(document).on('click', '.btnEditarProducto',function(){
             $('#editar_codigo').attr('readonly', true)
             $('#editar_descripcion').val(req['descripcion'])
             $('#editar_stock').val(req['stock'])
-            $('#editar_stock_minimo').val(req['stock_minimo'])
-            $('#editar_stock_maximo').val(req['stock_maximo'])
+          
             $('#editar_precio_compra').val(req['precio_compra'])
             $('#editar_precio_venta').val(req['precio_venta'])
             $('#imagen_actual').val(req['imagen'])
@@ -405,27 +404,27 @@ $(document).on('click', '.btnEditarProducto',function(){
 
            
             const id_categoria = req['id_categoria'];
-            const id_proveedor = req['id_proveedor'];
+           // const id_proveedor = req['id_proveedor'];
             const datosCategoria = new FormData();
             datosCategoria.append('id_categoria_consulta', id_categoria);
 
-               $.ajax({
-                    url: "ajax/AjaxProveedores.php",
-                    dataType:"json",
-                    success:function(req){
-                        req.forEach(proveedor => {
-                            let proveedorActual= ''
+            //    $.ajax({
+            //         url: "ajax/AjaxProveedores.php",
+            //         dataType:"json",
+            //         success:function(req){
+            //             req.forEach(proveedor => {
+            //                 let proveedorActual= ''
                             
-                            if(proveedor['id']==id_proveedor){
-                                proveedorActual = 'selected';
-                            }
-                            $('.selectProveedores').append(`<option ${proveedorActual} value="${proveedor['id']}">${proveedor['nombre']}</option>`)
-                        });
-                    },
-                    error:function(error){
-                        console.log(error.responseText)
-                    }
-                })
+            //                 if(proveedor['id']==id_proveedor){
+            //                     proveedorActual = 'selected';
+            //                 }
+            //                 $('.selectProveedores').append(`<option ${proveedorActual} value="${proveedor['id']}">${proveedor['nombre']}</option>`)
+            //             });
+            //         },
+            //         error:function(error){
+            //             console.log(error.responseText)
+            //         }
+            //     })
 
             $.ajax({
                 url: 'ajax/AjaxProductos.php',
@@ -473,14 +472,14 @@ $('.form_editar_producto').submit(function(e){
      }
    
      const id_producto = $('#id_producto').val();
-     const editar_id_proveedor = $('#editar_id_proveedor').val();
+     //const editar_id_proveedor = $('#editar_id_proveedor').val();
     
    
 
      const editar_descripcion = $('#editar_descripcion').val();
      const editar_stock = $('#editar_stock').val();
-     const editar_stock_minimo = $('#editar_stock_minimo').val();
-     const editar_stock_maximo = $('#editar_stock_maximo').val();
+    //  const editar_stock_minimo = $('#editar_stock_minimo').val();
+    //  const editar_stock_maximo = $('#editar_stock_maximo').val();
 
      const editar_precio_compra = $('#editar_precio_compra').val();
      const editar_precio_venta = $('#editar_precio_venta').val();
@@ -491,12 +490,12 @@ $('.form_editar_producto').submit(function(e){
 
 
      datos.append('id_producto',id_producto);
-     datos.append('editar_id_proveedor',editar_id_proveedor);
+    //  datos.append('editar_id_proveedor',editar_id_proveedor);
      datos.append('editar_descripcion',editar_descripcion)
      datos.append('editar_imagen', editar_imagen);
      datos.append('editar_stock',editar_stock)
-     datos.append('editar_stock_minimo',editar_stock_minimo)
-     datos.append('editar_stock_maximo',editar_stock_maximo)
+    //  datos.append('editar_stock_minimo',editar_stock_minimo)
+    //  datos.append('editar_stock_maximo',editar_stock_maximo)
      datos.append('editar_precio_compra',editar_precio_compra)
      datos.append('editar_precio_venta',editar_precio_venta)
      //datos.append('imagen',imagen)
