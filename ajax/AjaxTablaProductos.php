@@ -29,24 +29,22 @@
                        
                         $botones = "<div>";
                         
-                        $botones .= "<button class='btn btn-primary btnInfoProducto' idProducto='".$producto['id']."'  data-toggle='modal' data-target='#infoProducto'><i class='fa fa-search' ></i></button>";
+
                         $botones .= "<button class='btn btn-warning btnEditarProducto' idProducto='".$producto['id']."' data-toggle='modal' data-target='#editarProducto'><i class='fa fa-pencil' ></i></button>";
                         $botones .= "<button class='btn btn-danger btnEliminarProducto' idProducto='".$producto['id']."'><i class='fa fa-times'   data-toggle='modalEliminar' data-target='#modalEliminarProducto'</i></button>";
                         $botones .= "</div>";
-                        if($producto['stock']<$producto['stock_minimo']){
+                        $stock = "<button class='btn btn-success'>".$producto['stock']."</button>";
+                        if($producto['stock']<50){
                             $stock = "<button class='btn btn-danger'>".$producto['stock']."</button>";
-                        }else if($producto['stock']>$producto['stock_maximo']){
-                            $stock = "<button class='btn btn-warning'>".$producto['stock']."</button>";
-                        }else{
-                            $stock = "<button class='btn btn-success'>".$producto['stock']."</button>";
                         }
                         
                         $datoJson.= '[
                                 "'.$i.'",
                                 "'.$imagen.'",
+                                "'.$producto['codigo'].'",
                           
                                 "'.$producto['descripcion'].'",
-                                "'.$producto['codigo'].'",
+                               
                                 "'.$nombre_categoria.'",
                                 "'.$stock.'",
                                 "$'.number_format($producto['precio_compra'], 2, ',', '.').'",

@@ -1,4 +1,5 @@
 
+
 if($('.tablaProductos').length>0){
  $(".tablaProductos").dataTable().fnDestroy(); //por si me da error de reinicializar
 
@@ -11,7 +12,7 @@ $('.tablaProductos').DataTable({
 
 //mostrar informacion del producto
 
-$(document).on('click','.btnInfoProducto',function(){
+/* $(document).on('click','.btnInfoProducto',function(){
     const id_producto = $(this).attr('idProducto');
     
     const datos = new FormData();
@@ -34,8 +35,8 @@ $(document).on('click','.btnInfoProducto',function(){
         }
     })
 
-})
-function mostrarInfoProducto(info_producto){
+}) */
+/* function mostrarInfoProducto(info_producto){
    
 
     $('.info_producto').empty()
@@ -75,6 +76,8 @@ function mostrarInfoProducto(info_producto){
         }
 
     })
+    }
+    */
 
 
   
@@ -83,7 +86,7 @@ function mostrarInfoProducto(info_producto){
  
     
 
-}
+
 
 
 
